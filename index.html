@@ -125,7 +125,7 @@ section{padding:clamp(48px,7vw,96px) 0}
 
 /* ---------- Card ---------- */
 .grid{display:grid;gap:var(--spacing-lg)}
-.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g-form{grid-template-columns:1.5fr 1fr}
 .card{background:#fff;border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);
   padding:var(--spacing-lg);box-shadow:var(--shadow-card);transition:.2s}
 .card:hover{box-shadow:var(--shadow-raised);transform:translateY(-2px)}
@@ -213,7 +213,7 @@ section{padding:clamp(48px,7vw,96px) 0}
 
 /* ---------- Responsive ---------- */
 @media(max-width:1000px){
-  .hero__grid{grid-template-columns:1fr;gap:var(--spacing-xl)}
+  .hero__grid,.g-form{grid-template-columns:1fr;gap:var(--spacing-xl)}
   .g4{grid-template-columns:repeat(2,1fr)}
   .brands{grid-template-columns:repeat(4,1fr)}
   .ftr__grid{grid-template-columns:1fr 1fr}
@@ -408,7 +408,7 @@ section{padding:clamp(48px,7vw,96px) 0}
         <p class="lead">Compila il modulo: ti richiamiamo entro 8 ore lavorative. L'unico campo davvero obbligatorio è il telefono.</p>
       </div>
 
-      <div class="grid" style="grid-template-columns:1.5fr 1fr;margin-top:var(--spacing-xl);align-items:start">
+      <div class="grid g-form" style="margin-top:var(--spacing-xl);align-items:start">
         <form class="form" onsubmit="event.preventDefault();alert('Anteprima: in produzione la richiesta arriverà sulla casella dedicata.')">
           <div class="field"><label>Nome</label><input type="text" placeholder="Mario"></div>
           <div class="field"><label>Cognome</label><input type="text" placeholder="Rossi"></div>
