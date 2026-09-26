@@ -8,24 +8,19 @@ Non è il sito pubblico: ogni pagina è marcata `noindex`, quindi Google non la 
 
 ## Pagine
 - `index.html` — Assistenza stampanti e fotocopiatrici a Brescia
+- `chi-siamo.html` — Chi siamo – BF Service di Bodanza Francesco, Villanuova s/C
 - `servizi.html` — Servizi per stampanti e fotocopiatrici
-- `assistenza-stampanti.html` — Riparazione stampanti Brescia – Tecnico in sede
-- `assistenza-fotocopiatrici-multifunzione.html` — Assistenza fotocopiatrici Brescia
-- `plotter.html` — Assistenza e riparazione plotter HP DesignJet
-- `noleggio-stampanti-fotocopiatrici.html` — Noleggio fotocopiatrici e stampanti a Brescia
-- `vendita-stampanti-fotocopiatrici.html` — Vendita fotocopiatrici e stampanti per ufficio
-- `computer-e-pc.html` — Computer e PC per l'ufficio
-- `pubblica-amministrazione-mepa.html` — Fornitore MEPA: noleggio e assistenza stampanti per la PA
-- `marchi.html` — Assistenza multimarca: Kyocera, Ricoh, Canon, HP e altri
+- `assistenza-stampanti-multifunzione.html` — Assistenza stampanti e multifunzione Brescia
+- `noleggio-vendita-stampanti-fotocopiatrici.html` — Noleggio e vendita fotocopiatrici e stampanti
+- `plotter.html` — Plotter e grande formato HP DesignJet
+- `computer-postazioni-it.html` — Computer e postazioni IT per l'ufficio
 - `zone.html` — Zone servite: Brescia, Garda, Verona, Bergamo
 - `zona-garda-valle-sabbia.html` — Assistenza stampanti Salò, Garda e Valle Sabbia
-- `chi-siamo.html` — Chi siamo – BF Service di Bodanza Francesco, Villanuova s/C
-- `faq.html` — Domande frequenti su riparazione e noleggio
+- `faq.html` — FAQ e guide su riparazione e noleggio
 - `contatti.html` — Contatti e orari
 - `richiesta-intervento.html` — Richiedi un intervento tecnico
 - `privacy.html` — Privacy e cookie
 - `404.html` — Pagina non trovata
-- `guide.html` — Guide: stampante non stampa, offline, righe
 - `guida-stampante-non-stampa.html` — La stampante non stampa: 7 controlli
 - `guida-stampante-offline.html` — Stampante offline: cosa fare
 - `guida-righe-fogli-bianchi.html` — Stampante che fa righe o fogli bianchi

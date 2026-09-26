@@ -291,7 +291,7 @@ a.brand:hover,.brand:hover{border-color:var(--color-border-brand);color:var(--co
   border-top:1px solid var(--color-border-subtle);box-shadow:0 -4px 16px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom)}
 .mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 8px;font-weight:700;font-size:15px}
 .mbar a:first-child{color:var(--color-text-brand);border-right:1px solid var(--color-border-subtle)}
-.mbar a:last-child{background:var(--color-bg-urgent);color:#fff}
+.mbar a:last-child{background:var(--accent-amber);color:var(--gray-950)}
 
 /* ---------- Animazioni di comparsa ---------- */
 .js .reveal{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
@@ -356,3 +356,25 @@ a.brand:hover,.brand:hover{border-color:var(--color-border-brand);color:var(--co
 .nav__menu a[class*="acc-"] .ico{color:var(--acc)}
 .card[class*="acc-"]{border-top:3px solid var(--acc)}
 .related a[class*="acc-"] .ico{color:var(--acc)}
+
+/* ---------- v3: bottone Ho un guasto (#F5A523) e box MEPA ---------- */
+.btn--guasto{background:var(--accent-amber);color:var(--gray-950);box-shadow:0 6px 16px rgba(245,165,35,.28)}
+.btn--guasto:hover{background:#E8951A}
+.nav__cta{margin-left:10px;text-transform:uppercase;letter-spacing:.06em;font-size:13.5px;font-weight:700;padding:10px 18px;min-height:42px;white-space:nowrap}
+.mepa-box{display:grid;grid-template-columns:auto 1fr auto;gap:var(--spacing-lg);align-items:center;background:linear-gradient(120deg,var(--green-50),#fff);
+  border:1px solid var(--green-200);border-left:5px solid var(--green-700);border-radius:var(--radius-lg);padding:var(--spacing-lg) var(--spacing-xl);margin:var(--spacing-xl) 0}
+.mepa-box__ico{width:56px;height:56px;border-radius:var(--radius-md);background:var(--green-700);color:#fff;display:flex;align-items:center;justify-content:center}
+.mepa-box__ico .ico{width:28px;height:28px}
+.mepa-box b{font-size:18px;display:block;margin-bottom:4px}
+.mepa-box p{margin:0;color:var(--color-text-secondary);font-size:15px}
+.mepa-box .kicker{margin-bottom:4px}
+.tbl--compare th:nth-child(2),.tbl--compare td:nth-child(2){background:var(--green-50)}
+.tbl--compare th small{font-weight:500;color:var(--color-text-muted)}
+.pillar-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--spacing-lg)}
+.pillar-nav a{border:1px solid var(--color-border-subtle);background:#fff;border-radius:var(--radius-full);padding:7px 14px;font-size:14px;font-weight:600;color:var(--color-text-secondary)}
+.pillar-nav a:hover{border-color:var(--color-border-brand);color:var(--color-text-brand)}
+@media(max-width:1080px){.nav__cta{margin:12px 0 0;width:100%;font-size:15px;min-height:48px}}
+@media(max-width:768px){.mepa-box{grid-template-columns:1fr;padding:var(--spacing-lg)}}
+.nav > a.btn--guasto{background:var(--accent-amber);color:var(--gray-950);border:0}
+.nav > a.btn--guasto:hover{background:#E8951A;color:var(--gray-950)}
+.aside-card > a:not(.btn){color:var(--color-text-brand);font-weight:600}

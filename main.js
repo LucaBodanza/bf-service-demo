@@ -3,7 +3,7 @@
   document.documentElement.classList.add('js');
 
   // Vecchi link della demo (es. .../#/faq) -> nuove pagine
-  var OLD = { home: 'index.html', sos: 'richiesta-intervento.html', servizi: 'servizi.html', marchi: 'marchi.html',
+  var OLD = { home: 'index.html', sos: 'richiesta-intervento.html', servizi: 'servizi.html', marchi: 'servizi.html#marchi',
     zone: 'zone.html', 'chi-siamo': 'chi-siamo.html', faq: 'faq.html', contatti: 'contatti.html' };
   var h = location.hash.replace('#/', '');
   if (location.hash.indexOf('#/') === 0 && OLD[h]) { location.replace(OLD[h]); return; }
