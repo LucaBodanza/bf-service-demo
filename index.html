@@ -1,756 +1,94 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta name="robots" content="noindex, nofollow">
-<meta name="description" content="BF Service - assistenza e riparazioni hardware multimarca on-site su stampanti, fotocopiatrici, multifunzione e plotter. Intervento entro 8 ore lavorative in sei province.">
-<meta name="theme-color" content="#608030">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BF Service — Assistenza e riparazioni multimarca per l'ufficio</title>
+<title>Assistenza stampanti e fotocopiatrici a Brescia | BF Service</title>
+<meta name="description" content="Riparazione e noleggio di stampanti, fotocopiatrici, multifunzione e plotter. Tecnico in sede entro 8 ore lavorative, anche su marchi non venduti da noi.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#608030">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="BF Service">
+<meta property="og:title" content="Assistenza stampanti e fotocopiatrici a Brescia | BF Service">
+<meta property="og:description" content="Riparazione e noleggio di stampanti, fotocopiatrici, multifunzione e plotter. Tecnico in sede entro 8 ore lavorative, anche su marchi non venduti da noi.">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 32 32&quot;&gt;&lt;path d=&quot;M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z&quot; fill=&quot;%2380B040&quot;/&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   BF SERVICE — Design tokens (identici alle variabili Figma)
-   ============================================================ */
-:root{
-  color-scheme:light;
-  /* primitive */
-  --green-50:#F4F8EC; --green-100:#E4EFD2; --green-200:#D0E0C0; --green-300:#B0D080;
-  --green-400:#97C25E; --green-500:#80B040; --green-600:#6E9A36; --green-700:#608030;
-  --green-800:#4C6626; --green-900:#384C1C;
-  --gray-0:#FFFFFF; --gray-50:#FAFAF9; --gray-100:#F4F4F2; --gray-200:#E7E7E4;
-  --gray-300:#D2D2CE; --gray-400:#A8A8A3; --gray-500:#7C7C77; --gray-600:#5E5E5A;
-  --gray-700:#4A4A46; --gray-800:#404040; --gray-900:#2A2A28; --gray-950:#1A1A19;
-  --red-50:#FDECEC; --red-500:#CC0000; --red-600:#A80000; --red-700:#8A0000;
-
-  /* semantici */
-  --color-bg-default:var(--gray-0); --color-bg-subtle:var(--gray-50); --color-bg-muted:var(--gray-100);
-  --color-bg-brand:var(--green-700); --color-bg-brand-bold:var(--green-800);
-  --color-bg-brand-accent:var(--green-500); --color-bg-brand-subtle:var(--green-50);
-  --color-bg-urgent:var(--red-500); --color-bg-urgent-subtle:var(--red-50);
-  --color-bg-inverse:var(--gray-950);
-  --color-text-default:var(--gray-900); --color-text-secondary:var(--gray-600);
-  --color-text-muted:var(--gray-500); --color-text-brand:var(--green-800);
-  --color-text-urgent:var(--red-600); --color-text-inverse:var(--gray-0);
-  --color-border-default:var(--gray-300); --color-border-subtle:var(--gray-200);
-  --color-border-strong:var(--gray-400); --color-border-brand:var(--green-500);
-
-  /* spaziature e raggi */
-  --spacing-2xs:4px; --spacing-xs:8px; --spacing-sm:12px; --spacing-md:16px;
-  --spacing-lg:24px; --spacing-xl:32px; --spacing-2xl:48px; --spacing-3xl:64px;
-  --spacing-4xl:96px; --spacing-5xl:128px;
-  --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-xl:24px; --radius-full:9999px;
-
-  /* ombre */
-  --shadow-subtle:0 1px 2px rgba(0,0,0,.05);
-  --shadow-card:0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
-  --shadow-raised:0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
-  --shadow-overlay:0 12px 32px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-
-  --maxw:1200px;
-  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--font);color:var(--color-text-default);background:var(--color-bg-default);
-  line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{line-height:1.15;margin:0 0 .4em;letter-spacing:-.02em}
-h1{font-size:clamp(32px,5vw,60px);font-weight:700}
-h2{font-size:clamp(26px,3.4vw,36px);font-weight:700}
-h3{font-size:clamp(20px,2.2vw,24px);font-weight:600}
-h4{font-size:18px;font-weight:600}
-p{margin:0 0 1em}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--spacing-lg)}
-.lead{font-size:clamp(16px,1.6vw,19px);color:var(--color-text-secondary)}
-.kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-brand);margin-bottom:10px}
-.center{text-align:center}
-section{padding:clamp(48px,7vw,96px) 0}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-
-/* ---------- Bottoni ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--spacing-xs);
-  padding:var(--spacing-sm) var(--spacing-lg);border-radius:var(--radius-md);font-weight:600;font-size:16px;
-  border:1.5px solid transparent;cursor:pointer;transition:.18s ease;min-height:48px;font-family:inherit}
-.btn--primary{background:var(--color-bg-brand);color:var(--color-text-inverse)}
-.btn--primary:hover{background:var(--color-bg-brand-bold)}
-.btn--secondary{background:var(--color-bg-default);color:var(--color-text-brand);border-color:var(--color-border-brand)}
-.btn--secondary:hover{background:var(--color-bg-brand-subtle)}
-.btn--urgent{background:var(--color-bg-urgent);color:#fff}
-.btn--urgent:hover{background:var(--red-600)}
-.btn--ghost{color:var(--color-text-default)}
-.btn--ghost:hover{color:var(--color-text-brand)}
-.btn--sm{padding:var(--spacing-xs) var(--spacing-md);font-size:14px;min-height:40px}
-.btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(128,176,64,.45)}
-
-/* ---------- Header ---------- */
-.hdr{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--color-border-subtle)}
-.hdr__in{display:flex;align-items:center;gap:var(--spacing-lg);padding:12px var(--spacing-lg);max-width:var(--maxw);margin:0 auto}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em;flex:0 0 auto}
-.logo svg{width:30px;height:30px}
-.logo small{display:block;font-size:9px;letter-spacing:.22em;color:var(--color-text-muted);font-weight:600;margin-top:-4px}
-.nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
-.nav a{padding:8px 12px;border-radius:var(--radius-sm);font-size:15px;font-weight:500;color:var(--color-text-secondary);transition:.15s}
-.nav a:hover{background:var(--color-bg-muted);color:var(--color-text-default)}
-.nav a.is-active{color:var(--color-text-brand);background:var(--color-bg-brand-subtle)}
-.hdr__cta{display:flex;align-items:center;gap:var(--spacing-xs);flex:0 0 auto}
-.sos-num{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--color-text-urgent);font-size:15px;white-space:nowrap}
-.burger{display:none;background:none;border:1px solid var(--color-border-default);border-radius:var(--radius-sm);
-  width:44px;height:44px;cursor:pointer;font-size:19px;margin-left:auto}
-
-/* ---------- Hero ---------- */
-.hero{background:linear-gradient(170deg,var(--green-50) 0%,#fff 62%);border-bottom:1px solid var(--color-border-subtle);
-  position:relative;overflow:hidden}
-.hero__leaf{position:absolute;right:-90px;top:-70px;width:520px;opacity:.16;pointer-events:none}
-.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--spacing-3xl);align-items:center;position:relative}
-.hero__video{aspect-ratio:4/3;border-radius:var(--radius-lg);background:var(--gray-200)
-  repeating-linear-gradient(45deg,var(--gray-100),var(--gray-100) 12px,var(--gray-200) 12px,var(--gray-200) 24px);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--color-text-muted);
-  border:1px dashed var(--color-border-strong);font-size:14px;text-align:center;padding:var(--spacing-lg);box-shadow:var(--shadow-raised)}
-.hero__video b{font-size:26px}
-.hero__cta{display:flex;gap:var(--spacing-sm);flex-wrap:wrap;margin:var(--spacing-lg) 0}
-.chips{display:flex;gap:var(--spacing-xs);flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--color-border-brand);
-  color:var(--color-text-brand);border-radius:var(--radius-full);padding:6px 14px;font-size:13px;font-weight:600}
-
-/* ---------- Barra fiducia ---------- */
-.trust{background:var(--color-bg-brand);color:#fff;padding:var(--spacing-lg) 0}
-.trust__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--spacing-lg);text-align:center}
-.trust b{display:block;font-size:clamp(20px,2.4vw,28px);font-weight:700;line-height:1.1}
-.trust span{font-size:13px;opacity:.9}
-
-/* ---------- Card ---------- */
-.grid{display:grid;gap:var(--spacing-lg)}
-.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g-form{grid-template-columns:1.5fr 1fr}
-.card{background:#fff;border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);
-  padding:var(--spacing-lg);box-shadow:var(--shadow-card);transition:.2s}
-.card:hover{box-shadow:var(--shadow-raised);transform:translateY(-2px)}
-.card__ico{width:52px;height:52px;border-radius:var(--radius-md);background:var(--color-bg-brand-subtle);
-  display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:var(--spacing-sm)}
-.card p{color:var(--color-text-secondary);font-size:15px;margin-bottom:var(--spacing-sm)}
-.card__link{font-weight:600;color:var(--color-text-brand);font-size:14px}
-
-/* ---------- Step ---------- */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--spacing-xl);counter-reset:s}
-.step{position:relative;padding-top:var(--spacing-lg)}
-.step__n{width:44px;height:44px;border-radius:var(--radius-full);background:var(--color-bg-brand-accent);
-  color:var(--gray-950);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:var(--spacing-sm)}
-.step p{color:var(--color-text-secondary);font-size:15px}
-
-/* ---------- Marchi / zone ---------- */
-.brands{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--spacing-sm)}
-.brand{border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);padding:var(--spacing-md) var(--spacing-xs);
-  text-align:center;font-weight:600;color:var(--color-text-secondary);background:#fff;font-size:14px;transition:.18s}
-.brand:hover{border-color:var(--color-border-brand);color:var(--color-text-brand);background:var(--color-bg-brand-subtle)}
-.zones{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--spacing-md)}
-.zone{border:1px solid var(--color-border-subtle);border-left:4px solid var(--color-bg-brand-accent);
-  border-radius:var(--radius-md);padding:var(--spacing-md) var(--spacing-lg);background:#fff}
-.zone b{font-size:17px}
-.zone span{font-size:13px;color:var(--color-text-muted)}
-
-/* ---------- Banda S.O.S ---------- */
-.sos-band{background:var(--color-bg-inverse);color:#fff;border-radius:var(--radius-xl);padding:clamp(28px,4vw,56px);
-  display:grid;grid-template-columns:1.4fr auto;gap:var(--spacing-xl);align-items:center}
-.sos-band h2{color:#fff;margin-bottom:.3em}
-.sos-band p{color:#cfd3cb;margin:0}
-.sos-band__cta{display:flex;gap:var(--spacing-sm);flex-wrap:wrap}
-
-/* ---------- Form ---------- */
-.form{display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md)}
-.field{display:flex;flex-direction:column;gap:6px}
-.field--full{grid-column:1/-1}
-.field label{font-size:14px;font-weight:500}
-.field label .req{color:var(--color-text-urgent)}
-.field input,.field select,.field textarea{font-family:inherit;font-size:16px;padding:12px var(--spacing-sm);
-  border:1px solid var(--color-border-default);border-radius:var(--radius-md);background:#fff;color:inherit;width:100%}
-.field textarea{min-height:120px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--color-border-brand);
-  box-shadow:0 0 0 3px rgba(128,176,64,.25)}
-.checkline{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--color-text-secondary)}
-.checkline input{width:18px;height:18px;margin-top:2px;flex:0 0 auto}
-.aside-card{background:var(--color-bg-brand-subtle);border:1px solid var(--green-200);border-radius:var(--radius-lg);
-  padding:var(--spacing-lg);margin-bottom:var(--spacing-md)}
-.aside-card b{display:block;margin-bottom:6px}
-.aside-card p{font-size:14px;color:var(--color-text-secondary);margin:0}
-
-/* ---------- FAQ ---------- */
-.faq{border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);margin-bottom:var(--spacing-sm);background:#fff;overflow:hidden}
-.faq summary{padding:var(--spacing-md) var(--spacing-lg);font-weight:600;cursor:pointer;list-style:none;
-  display:flex;justify-content:space-between;gap:var(--spacing-md);align-items:center}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:'+';font-size:22px;color:var(--color-text-brand);flex:0 0 auto}
-.faq[open] summary::after{content:'–'}
-.faq__body{padding:0 var(--spacing-lg) var(--spacing-md);color:var(--color-text-secondary);font-size:15px}
-
-/* ---------- Footer ---------- */
-.ftr{background:var(--color-bg-inverse);color:#cfd3cb;padding:var(--spacing-3xl) 0 var(--spacing-lg)}
-.ftr__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:var(--spacing-xl)}
-.ftr h4{color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--spacing-sm)}
-.ftr a{color:#cfd3cb;font-size:14px;display:block;padding:4px 0}
-.ftr a:hover{color:var(--green-300)}
-.ftr__legal{border-top:1px solid #33352f;margin-top:var(--spacing-xl);padding-top:var(--spacing-md);
-  font-size:12.5px;color:#8b8f85;display:flex;justify-content:space-between;gap:var(--spacing-md);flex-wrap:wrap}
-.mepa{background:#22241f;border:1px solid #33352f;border-radius:var(--radius-md);padding:var(--spacing-sm) var(--spacing-md);
-  font-size:12px;color:#9aa091;display:inline-block;margin-top:var(--spacing-xs)}
-
-/* ---------- Barra mobile ---------- */
-.mbar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:80;background:#fff;
-  border-top:1px solid var(--color-border-subtle);box-shadow:0 -4px 16px rgba(0,0,0,.08)}
-.mbar a{flex:1;text-align:center;padding:14px 8px;font-weight:700;font-size:14px}
-.mbar a:first-child{color:var(--color-text-brand);border-right:1px solid var(--color-border-subtle)}
-.mbar a:last-child{background:var(--color-bg-urgent);color:#fff}
-
-.page{display:none;animation:fade .25s ease}
-.page.is-on{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.crumb{font-size:13px;color:var(--color-text-muted);padding-top:var(--spacing-lg)}
-.note-demo{background:var(--color-bg-urgent-subtle);border:1px solid #f3c9c9;color:var(--red-700);
-  border-radius:var(--radius-md);padding:10px var(--spacing-md);font-size:13px;margin:var(--spacing-md) auto 0;max-width:var(--maxw)}
-
-/* ---------- Responsive ---------- */
-@media(max-width:1000px){
-  .hero__grid,.g-form{grid-template-columns:1fr;gap:var(--spacing-xl)}
-  .g4{grid-template-columns:repeat(2,1fr)}
-  .brands{grid-template-columns:repeat(4,1fr)}
-  .ftr__grid{grid-template-columns:1fr 1fr}
-  .sos-band{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  .nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;
-    padding:var(--spacing-sm);border-bottom:1px solid var(--color-border-subtle);box-shadow:var(--shadow-overlay)}
-  .nav.is-open{display:flex}
-  .nav a{padding:12px;font-size:16px}
-  .burger{display:block}
-  .hdr__cta{display:none}
-  .trust__grid,.steps,.zones,.g2,.g3{grid-template-columns:1fr}
-  .trust__grid{grid-template-columns:repeat(2,1fr);gap:var(--spacing-md)}
-  .brands{grid-template-columns:repeat(3,1fr)}
-  .form{grid-template-columns:1fr}
-  .ftr__grid{grid-template-columns:1fr}
-  .mbar{display:flex}
-  body{padding-bottom:58px}
-  .hero__leaf{width:320px;right:-70px;opacity:.12}
-}
-@media(max-width:420px){ .brands{grid-template-columns:repeat(2,1fr)} }
-</style>
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "@id": "https://www.bf-service.net/#azienda", "name": "BF Service di Bodanza Francesco", "alternateName": "BF Service", "description": "Assistenza, riparazione, noleggio e vendita di stampanti, fotocopiatrici, multifunzione e plotter per uffici, aziende e Pubblica Amministrazione. Intervento on-site entro 8 ore lavorative, anche su marchi non forniti da noi.", "url": "https://www.bf-service.net/", "telephone": "+39 338 580 5517", "email": "info@bf-service.net", "vatID": "IT03226100984", "address": {"@type": "PostalAddress", "streetAddress": "Via Carpen, 39", "postalCode": "25089", "addressLocality": "Villanuova sul Clisi", "addressRegion": "BS", "addressCountry": "IT"}, "areaServed": [{"@type": "AdministrativeArea", "name": "Provincia di Brescia"}, {"@type": "AdministrativeArea", "name": "Provincia di Bergamo"}, {"@type": "AdministrativeArea", "name": "Provincia di Verona"}, {"@type": "AdministrativeArea", "name": "Provincia di Mantova"}, {"@type": "AdministrativeArea", "name": "Provincia di Cremona"}, {"@type": "AdministrativeArea", "name": "Lago di Garda"}, {"@type": "AdministrativeArea", "name": "Valle Sabbia"}], "knowsAbout": ["assistenza stampanti", "riparazione fotocopiatrici", "stampanti multifunzione", "plotter HP DesignJet", "noleggio fotocopiatrici", "MEPA"], "brand": [{"@type": "Brand", "name": "Kyocera"}, {"@type": "Brand", "name": "Canon"}, {"@type": "Brand", "name": "Ricoh"}, {"@type": "Brand", "name": "HP"}, {"@type": "Brand", "name": "Konica Minolta"}, {"@type": "Brand", "name": "Sharp"}, {"@type": "Brand", "name": "Brother"}, {"@type": "Brand", "name": "Epson"}, {"@type": "Brand", "name": "OKI"}, {"@type": "Brand", "name": "Samsung"}, {"@type": "Brand", "name": "Develop"}, {"@type": "Brand", "name": "Olivetti"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "La stampante non stampa ma sembra accesa. È rotta?", "acceptedAnswer": {"@type": "Answer", "text": "Nella maggior parte dei casi no. Controlla che non ci sia una coda di stampa bloccata sul computer, che il cavo di rete sia collegato e che sul display non ci sia un messaggio di errore. Se dopo questi controlli non stampa, scrivici indicando il messaggio che vedi: trovi tutti i passaggi nella guida dedicata."}}, {"@type": "Question", "name": "Riparate anche macchine che non ho comprato da voi?", "acceptedAnswer": {"@type": "Answer", "text": "Sì. Interveniamo su stampanti, fotocopiatrici e plotter di 12 marchi anche se li hai acquistati altrove: è una delle cose che facciamo da sempre."}}, {"@type": "Question", "name": "Quanto costa l'uscita del tecnico?", "acceptedAnswer": {"@type": "Answer", "text": "Dipende dalla distanza dalla nostra sede. Il costo te lo comunichiamo sempre prima di muoverci, insieme alla diagnosi: nessuna sorpresa in fattura. Vedi Dove operiamo."}}, {"@type": "Question", "name": "In quanto tempo intervenite?", "acceptedAnswer": {"@type": "Answer", "text": "Entro 8 ore lavorative dalla chiamata, in tutta la zona che copriamo. È il tempo su cui organizziamo ogni giorno l'agenda dei tecnici."}}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div class="note-demo" role="note"><div class="wrap"><svg class="ico ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg><b>Anteprima di lavoro</b><span class="nd-more"> · alcuni contenuti e recapiti sono da confermare con il titolare. Il logo è provvisorio.</span></div></div>
 <header class="hdr">
   <div class="hdr__in">
-    <a href="#/home" class="logo">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg>
-      <span>BF Service<small>OFFICE AUTOMATION</small></span>
-    </a>
-    <button class="burger" id="burger" aria-label="Apri il menu">☰</button>
-    <nav class="nav" id="nav">
-      <a href="#/home">Home</a>
-      <a href="#/servizi">Servizi</a>
-      <a href="#/marchi">Marchi</a>
-      <a href="#/zone">Dove operiamo</a>
-      <a href="#/chi-siamo">Chi siamo</a>
-      <a href="#/faq">FAQ</a>
-      <a href="#/contatti">Contatti</a>
-    </nav>
+    <a href="index.html" class="logo" aria-label="BF Service, torna alla home"><svg class="" viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg><span>BF Service<small>OFFICE AUTOMATION</small></span></a>
+    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="nav"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Menu principale"><a href="index.html" class="is-active" aria-current="page">Home</a><div class="nav__drop"><button type="button" aria-expanded="false" aria-haspopup="true">Servizi <svg class="ico ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="nav__menu"><a href="assistenza-stampanti.html" class="acc-orange"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.6 17.4a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.2-.5-.5-2.2z"/></svg><div><b>Assistenza e riparazione stampanti</b><span>Laser, inkjet, multifunzione A4</span></div></a><a href="assistenza-fotocopiatrici-multifunzione.html" class="acc-orange"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V4h12v4M7 18v2h10v-2M7 12h4"/></svg><div><b>Assistenza fotocopiatrici</b><span>Multifunzione A3/A4 per uffici</span></div></a><a href="plotter.html" class="acc-blue"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="7" rx="2"/><path d="M5 14v6M19 14v6M6 10h8M16 3v4"/></svg><div><b>Plotter</b><span>Assistenza, noleggio e vendita</span></div></a><a href="noleggio-stampanti-fotocopiatrici.html" class="acc-blue"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l2 2M15 8l2 2"/></svg><div><b>Noleggio stampanti e fotocopiatrici</b><span>Canone fisso, assistenza inclusa</span></div></a><a href="vendita-stampanti-fotocopiatrici.html" class="acc-amber"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg><div><b>Vendita e consumabili</b><span>Macchine per ufficio, toner, carta</span></div></a><a href="computer-e-pc.html" class="acc-blue"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><div><b>Computer e PC</b><span>Vendita e assistenza per l&#x27;ufficio</span></div></a><a href="pubblica-amministrazione-mepa.html" class="acc-green"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div><b>Pubblica Amministrazione</b><span>Fornitore abilitato MEPA</span></div></a><hr><a href="servizi.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div><b>Tutti i servizi</b><span>Panoramica completa</span></div></a></div></div><a href="marchi.html">Marchi</a><a href="zone.html">Dove operiamo</a><a href="chi-siamo.html">Chi siamo</a><a href="guide.html">Guide</a><a href="faq.html">FAQ</a><a href="contatti.html">Contatti</a><div class="nav__mcta"><a href="tel:+393385805517" class="btn btn--secondary"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg> Chiama 338 580 5517</a><a href="richiesta-intervento.html" class="btn btn--urgent">Ho un guasto</a></div></nav>
     <div class="hdr__cta">
-      <span class="sos-num">S.O.S 338 580 5517</span>
-      <a href="#/sos" class="btn btn--urgent btn--sm">Ho un guasto</a>
+      <a class="sos-num" href="tel:+393385805517"><svg class="ico ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg> S.O.S 338 580 5517</a>
+      <a href="richiesta-intervento.html" class="btn btn--urgent btn--sm">Ho un guasto</a>
     </div>
   </div>
 </header>
+<main id="main">
 
-<div class="note-demo">⚠️ <b>Anteprima di lavoro.</b> Contenuti e recapiti da confermare con papà. Il logo è un segnaposto in attesa del file vettoriale.</div>
-
-<main id="app">
-
-<!-- ================= HOME ================= -->
-<div class="page" data-page="home">
-  <section class="hero">
-    <svg class="hero__leaf" viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg>
-    <div class="wrap hero__grid">
-      <div>
-        <div class="kicker">Riparazioni hardware multimarca</div>
-        <h1>La macchina è ferma?<br>Interveniamo entro 8 ore.</h1>
-        <p class="lead">Assistenza on-site su stampanti, fotocopiatrici, multifunzione e plotter.
-        Ripariamo anche i marchi che non abbiamo venduto noi, in sei province tra Lombardia e Veneto.</p>
-        <div class="hero__cta">
-          <a href="#/sos" class="btn btn--urgent">Ho un guasto → Richiedi intervento</a>
-          <a href="#/servizi" class="btn btn--secondary">Preventivo o noleggio</a>
-        </div>
-        <div class="chips">
-          <span class="chip">⏱ Intervento in 8 ore lavorative</span>
-          <span class="chip">🔧 12 marchi assistiti</span>
-          <span class="chip">🏛 Fornitore MEPA</span>
-        </div>
-      </div>
-      <div class="hero__video">
-        <b>▶</b>
-        <span>Video loop — l'officina e le mani che riparano<br><small>(da girare, idea di Giuseppe)</small></span>
+<section class="hero">
+  <svg class="hero__leaf" viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg>
+  <div class="wrap hero__grid">
+    <div class="reveal is-in">
+      <div class="hero__pre"><i></i>La macchina è ferma? Ci pensiamo noi.</div>
+      <h1>Assistenza e riparazione stampanti a Brescia: intervento in 8 ore</h1>
+      <p class="lead">Riparazione, noleggio e vendita di stampanti, fotocopiatrici multifunzione e plotter per uffici e aziende.
+      Il tecnico viene da te, anche per i marchi che non abbiamo venduto noi, tra Brescia, Bergamo, Verona, Mantova e Cremona.</p>
+      <div class="btns"><a href="richiesta-intervento.html" class="btn btn--urgent">Ho un guasto → Richiedi intervento</a><a href="noleggio-stampanti-fotocopiatrici.html" class="btn btn--secondary">Preventivo noleggio o vendita</a></div>
+      <div class="chips">
+        <span class="chip"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Intervento entro 8 ore lavorative</span>
+        <span class="chip"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.6 17.4a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.2-.5-.5-2.2z"/></svg> 12 marchi assistiti</span>
+        <span class="chip"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg> Fornitore abilitato MEPA</span>
       </div>
     </div>
-  </section>
-
-  <div class="trust">
-    <div class="wrap trust__grid">
-      <div><b>8 ore</b><span>tempo di intervento dichiarato</span></div>
-      <div><b>6</b><span>province coperte</span></div>
-      <div><b>12</b><span>marchi assistiti</span></div>
-      <div><b>On-site</b><span>veniamo noi, non smonti nulla</span></div>
-    </div>
+    <div class="reveal is-in"><div class="media" role="img" aria-label="Spazio per il video di BF Service"><svg class="leafbg" viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#ffffff"/></svg><div class="media__play"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5l12 7-12 7z" fill="currentColor"/></svg></div><div class="media__ph"><b>Il tecnico al lavoro</b><span>Qui andrà il video girato in officina e con il drone (in preparazione)</span></div></div></div>
   </div>
-
-  <section>
-    <div class="wrap">
-      <div class="center" style="max-width:640px;margin:0 auto var(--spacing-xl)">
-        <div class="kicker">Cosa facciamo</div>
-        <h2>Tutto quello che serve al tuo ufficio</h2>
-        <p class="lead">Dalla riparazione urgente alla fornitura completa, con un unico interlocutore.</p>
-      </div>
-      <div class="grid g4">
-        <div class="card"><div class="card__ico">🔧</div><h4>Assistenza e riparazioni</h4>
-          <p>Interventi on-site su stampanti, multifunzione e plotter. Anche su macchine non acquistate da noi.</p>
-          <a href="#/servizi" class="card__link">Scopri di più →</a></div>
-        <div class="card"><div class="card__ico">📄</div><h4>Noleggio</h4>
-          <p>Multifunzione a canone fisso con assistenza e consumabili inclusi. Zero sorprese a budget.</p>
-          <a href="#/servizi" class="card__link">Scopri di più →</a></div>
-        <div class="card"><div class="card__ico">🛒</div><h4>Vendita</h4>
-          <p>Macchine per ufficio, computer e consumabili dei principali marchi del settore.</p>
-          <a href="#/servizi" class="card__link">Scopri di più →</a></div>
-        <div class="card"><div class="card__ico">💡</div><h4>Consulenza</h4>
-          <p>Software gestionali e analisi dei flussi di stampa per ridurre costi e sprechi.</p>
-          <a href="#/servizi" class="card__link">Scopri di più →</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:var(--color-bg-subtle)">
-    <div class="wrap">
-      <div class="center" style="max-width:620px;margin:0 auto var(--spacing-xl)">
-        <div class="kicker">Come funziona</div>
-        <h2>Tre passaggi, nessuna sorpresa</h2>
-      </div>
-      <div class="steps">
-        <div class="step"><div class="step__n">1</div><h4>Ci racconti il guasto</h4>
-          <p>Compili il modulo in un minuto o ci chiami. Ci basta sapere marca, tipo di macchina e cosa succede.</p></div>
-        <div class="step"><div class="step__n">2</div><h4>Diagnosi e preventivo</h4>
-          <p>Ti richiamiamo, capiamo il problema e ti diciamo costo e tempi prima di muoverci. Niente sorprese in fattura.</p></div>
-        <div class="step"><div class="step__n">3</div><h4>Interveniamo da te</h4>
-          <p>Il tecnico arriva in sede entro 8 ore lavorative con i ricambi. Tu non devi smontare né spedire niente.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="center" style="max-width:640px;margin:0 auto var(--spacing-xl)">
-        <div class="kicker">Marchi assistiti</div>
-        <h2>Multimarca, davvero</h2>
-        <p class="lead">Interveniamo su apparecchiature e marchi anche non forniti da noi.</p>
-      </div>
-      <div class="brands">
-        <div class="brand">Kyocera</div><div class="brand">Canon</div><div class="brand">Ricoh</div>
-        <div class="brand">HP</div><div class="brand">Konica Minolta</div><div class="brand">Sharp</div>
-        <div class="brand">Brother</div><div class="brand">Epson</div><div class="brand">OKI</div>
-        <div class="brand">Samsung</div><div class="brand">Develop</div><div class="brand">Olivetti</div>
-      </div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="sos-band">
-        <div>
-          <h2>Hai una macchina ferma adesso?</h2>
-          <p>Scrivici il problema: ti richiamiamo entro 8 ore lavorative con una diagnosi e un preventivo.</p>
-        </div>
-        <div class="sos-band__cta">
-          <a href="#/sos" class="btn btn--urgent">Richiedi intervento</a>
-          <a href="tel:+393385805517" class="btn btn--secondary">☎ 338 580 5517</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:var(--color-bg-subtle)">
-    <div class="wrap">
-      <div class="center" style="max-width:620px;margin:0 auto var(--spacing-xl)">
-        <div class="kicker">Domande frequenti</div>
-        <h2>Prima di chiamare, prova questo</h2>
-      </div>
-      <div style="max-width:800px;margin:0 auto">
-        <details class="faq"><summary>La stampante non stampa ma sembra accesa. È rotta?</summary>
-          <div class="faq__body">Nella maggior parte dei casi no. Controlla che non ci sia una coda di stampa bloccata, che il cavo di rete sia collegato e che non ci sia un messaggio di errore sul display. Se dopo questi tre controlli non stampa, scrivici: nel modulo indica il messaggio che vedi.</div></details>
-        <details class="faq"><summary>Riparate anche macchine che non ho comprato da voi?</summary>
-          <div class="faq__body">Sì. Interveniamo su apparecchiature e marchi anche non forniti dalla nostra azienda: è una delle cose che facciamo da sempre.</div></details>
-        <details class="faq"><summary>Quanto costa l'uscita del tecnico?</summary>
-          <div class="faq__body">Il costo dipende dalla zona. Trovi il dettaglio nella pagina <a href="#/zone" style="color:var(--color-text-brand);font-weight:600">Dove operiamo</a>, e in ogni caso il preventivo te lo diamo prima di intervenire.</div></details>
-        <details class="faq"><summary>In quanto tempo intervenite?</summary>
-          <div class="faq__body">Entro 8 ore lavorative dalla chiamata. È il tempo che dichiariamo e su cui ci organizziamo internamente.</div></details>
-      </div>
-      <div class="center" style="margin-top:var(--spacing-lg)">
-        <a href="#/faq" class="btn btn--secondary">Tutte le domande frequenti</a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ================= S.O.S ================= -->
-<div class="page" data-page="sos">
-  <div class="wrap crumb">Home › Pronto intervento</div>
-  <section style="padding-top:var(--spacing-lg)">
-    <div class="wrap">
-      <div style="max-width:680px">
-        <div class="kicker" style="color:var(--color-text-urgent)">S.O.S — Pronto intervento</div>
-        <h1>Richiedi un intervento tecnico</h1>
-        <p class="lead">Compila il modulo: ti richiamiamo entro 8 ore lavorative. L'unico campo davvero obbligatorio è il telefono.</p>
-      </div>
-
-      <div class="grid g-form" style="margin-top:var(--spacing-xl);align-items:start">
-        <form class="form" onsubmit="event.preventDefault();alert('Anteprima: in produzione la richiesta arriverà sulla casella dedicata.')">
-          <div class="field"><label>Nome</label><input type="text" placeholder="Mario"></div>
-          <div class="field"><label>Cognome</label><input type="text" placeholder="Rossi"></div>
-          <div class="field"><label>Telefono <span class="req">*</span></label><input type="tel" required placeholder="333 1234567"></div>
-          <div class="field"><label>Email</label><input type="email" placeholder="mario@azienda.it"></div>
-          <div class="field"><label>Azienda</label><input type="text" placeholder="Opzionale"></div>
-          <div class="field"><label>Città</label><input type="text" placeholder="Brescia"></div>
-          <div class="field"><label>Tipo di macchina</label>
-            <select><option>Seleziona…</option><option>Stampante</option><option>Fotocopiatrice</option>
-            <option>Multifunzione</option><option>Plotter</option><option>Computer</option><option>Altro</option></select></div>
-          <div class="field"><label>Marca</label>
-            <select><option>Seleziona…</option><option>Kyocera</option><option>Canon</option><option>Ricoh</option>
-            <option>HP</option><option>Konica Minolta</option><option>Sharp</option><option>Brother</option>
-            <option>Epson</option><option>OKI</option><option>Samsung</option><option>Develop</option>
-            <option>Olivetti</option><option>Non lo so</option></select></div>
-          <div class="field field--full"><label>Modello o codice (se lo conosci)</label><input type="text" placeholder="Es. TASKalfa 3253ci"></div>
-          <div class="field field--full"><label>Descrizione del problema</label>
-            <textarea placeholder="Cosa succede? C'è un messaggio di errore sul display? Da quando?"></textarea></div>
-          <div class="field field--full">
-            <label class="checkline"><input type="checkbox"> <span>È urgente, la macchina è completamente ferma</span></label>
-            <label class="checkline" style="margin-top:8px"><input type="checkbox" required> <span>Acconsento al trattamento dei dati per essere ricontattato <span class="req">*</span></span></label>
-          </div>
-          <div class="field--full"><button type="submit" class="btn btn--urgent" style="width:100%">Invia richiesta di intervento</button></div>
-        </form>
-
-        <aside>
-          <div class="aside-card"><b>⏱ Ti richiamiamo entro 8 ore</b>
-            <p>Sono ore lavorative dalla ricezione. Se scrivi il venerdì sera, ti sentiamo il lunedì mattina.</p></div>
-          <div class="aside-card" style="background:var(--color-bg-urgent-subtle);border-color:#f3c9c9">
-            <b>Preferisci parlare subito?</b>
-            <p style="margin-bottom:12px">Se l'ufficio è bloccato, chiamare resta la via più veloce.</p>
-            <a href="tel:+393385805517" class="btn btn--urgent btn--sm" style="width:100%">☎ 338 580 5517</a></div>
-          <div class="aside-card" style="background:#fff;border-color:var(--color-border-subtle)">
-            <b>Cosa succede dopo</b>
-            <p>1. Leggiamo la richiesta e la assegniamo a un tecnico.<br>
-               2. Ti chiamiamo per capire il guasto e darti un preventivo.<br>
-               3. Concordiamo l'intervento in sede.</p></div>
-        </aside>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ================= SERVIZI ================= -->
-<div class="page" data-page="servizi">
-  <div class="wrap crumb">Home › Servizi</div>
-  <section style="padding-top:var(--spacing-lg);padding-bottom:var(--spacing-xl)">
-    <div class="wrap" style="max-width:760px">
-      <div class="kicker">Servizi</div>
-      <h1>Un solo interlocutore per tutto l'ufficio</h1>
-      <p class="lead">Assistenza, noleggio, vendita e consulenza nel settore Office Automation,
-      con la stessa promessa su tutto: tempi certi e preventivo prima di intervenire.</p>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap grid g2">
-      <div class="card"><div class="card__ico">🔧</div>
-        <h3>Assistenza e riparazioni</h3>
-        <p>Interventi <b>on-site</b> su stampanti, fotocopiatrici, multifunzione e plotter, entro 8 ore lavorative dalla chiamata.
-        Lavoriamo su 12 marchi, <b>compresi quelli che non abbiamo venduto noi</b>: non serve che la macchina sia nostra.</p>
-        <p>Il tecnico arriva in sede con i ricambi. Tu non smonti nulla e non spedisci nulla.</p>
-        <a href="#/sos" class="card__link">Richiedi un intervento →</a></div>
-
-      <div class="card"><div class="card__ico">📄</div>
-        <h3>Noleggio</h3>
-        <p>Multifunzione e fotocopiatrici a <b>canone fisso mensile</b>, con assistenza, ricambi e manutenzione inclusi.
-        Nessun investimento iniziale e nessuna sorpresa a bilancio.</p>
-        <p>È la formula più adatta a chi stampa molto e vuole un costo prevedibile, senza gestire guasti e scorte.</p>
-        <a href="#/contatti" class="card__link">Chiedi un preventivo →</a></div>
-
-      <div class="card"><div class="card__ico">🛒</div>
-        <h3>Vendita</h3>
-        <p>Macchine per ufficio, computer, periferiche e consumabili dei principali marchi del settore.
-        Ti aiutiamo a scegliere in base a quanto stampi davvero, non al listino.</p>
-        <p>Siamo <b>fornitori MEPA</b>, quindi lavoriamo regolarmente anche con enti e amministrazioni pubbliche.</p>
-        <a href="#/contatti" class="card__link">Parlane con noi →</a></div>
-
-      <div class="card"><div class="card__ico">💡</div>
-        <h3>Consulenza e software gestionali</h3>
-        <p>Analisi dei flussi di stampa per capire dove si spreca, configurazione delle macchine in rete
-        e software gestionali per l'ufficio.</p>
-        <p>Spesso il risparmio più grande non è cambiare macchina, ma usarla meglio.</p>
-        <a href="#/contatti" class="card__link">Richiedi una valutazione →</a></div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap"><div class="sos-band">
-      <div><h2>Non sai quale servizio ti serve?</h2>
-      <p>Raccontaci la situazione: ti diciamo noi se conviene riparare, noleggiare o sostituire.</p></div>
-      <div class="sos-band__cta"><a href="#/contatti" class="btn btn--primary">Contattaci</a></div>
-    </div></div>
-  </section>
-</div>
-
-<!-- ================= MARCHI ================= -->
-<div class="page" data-page="marchi">
-  <div class="wrap crumb">Home › Marchi assistiti</div>
-  <section style="padding-top:var(--spacing-lg)">
-    <div class="wrap" style="max-width:760px">
-      <div class="kicker">Marchi assistiti</div>
-      <h1>Multimarca, anche se non l'hai comprata da noi</h1>
-      <p class="lead">Gestiamo interventi su apparecchiature e marchi anche non forniti dalla nostra azienda.
-      Se il tuo marchio è in questo elenco, possiamo intervenire.</p>
-    </div>
-    <div class="wrap" style="margin-top:var(--spacing-xl)">
-      <div class="brands">
-        <div class="brand">Kyocera</div><div class="brand">Canon</div><div class="brand">Ricoh</div>
-        <div class="brand">HP</div><div class="brand">Konica Minolta</div><div class="brand">Sharp</div>
-        <div class="brand">Brother</div><div class="brand">Epson</div><div class="brand">OKI</div>
-        <div class="brand">Samsung</div><div class="brand">Develop</div><div class="brand">Olivetti</div>
-      </div>
-      <div class="aside-card" style="margin-top:var(--spacing-xl);max-width:760px">
-        <b>Il tuo marchio non è in elenco?</b>
-        <p>Scrivici comunque. L'elenco raccoglie i marchi su cui lavoriamo più spesso, non è un limite:
-        valutiamo caso per caso in base al modello e alla disponibilità dei ricambi.</p>
-      </div>
-      <div style="margin-top:var(--spacing-lg)"><a href="#/sos" class="btn btn--urgent">Ho un guasto su questa marca</a></div>
-    </div>
-  </section>
-</div>
-
-<!-- ================= ZONE ================= -->
-<div class="page" data-page="zone">
-  <div class="wrap crumb">Home › Dove operiamo</div>
-  <section style="padding-top:var(--spacing-lg)">
-    <div class="wrap" style="max-width:760px">
-      <div class="kicker">Dove operiamo</div>
-      <h1>Sei province, un solo numero da chiamare</h1>
-      <p class="lead">Interveniamo on-site in tutta la Lombardia orientale e nel veronese.
-      La sede è a Villanuova sul Clisi, in provincia di Brescia.</p>
-    </div>
-    <div class="wrap" style="margin-top:var(--spacing-xl)">
-      <div class="zones">
-        <div class="zone"><b>Brescia</b><br><span>Città e provincia — zona sede</span></div>
-        <div class="zone"><b>Bergamo</b><br><span>Città e provincia</span></div>
-        <div class="zone"><b>Verona</b><br><span>Città e provincia</span></div>
-        <div class="zone"><b>Crema</b><br><span>Crema e comuni limitrofi</span></div>
-        <div class="zone"><b>Cremona</b><br><span>Città e provincia</span></div>
-        <div class="zone"><b>Mantova</b><br><span>Città e provincia</span></div>
-      </div>
-      <div class="aside-card" style="margin-top:var(--spacing-xl)">
-        <b>Costo di uscita per zona</b>
-        <p>Il costo dell'intervento varia in base alla distanza. Te lo comunichiamo sempre
-        <b>prima</b> di muoverci, insieme alla diagnosi: nessun preventivo a sorpresa.</p>
-        <p style="margin-top:8px;color:var(--color-text-urgent)"><b>Da completare:</b> qui va la tabella dei costi per zona, da confermare con papà.</p>
-      </div>
-      <div style="margin-top:var(--spacing-lg)"><a href="#/sos" class="btn btn--urgent">Richiedi intervento nella tua zona</a></div>
-    </div>
-  </section>
-</div>
-
-<!-- ================= CHI SIAMO ================= -->
-<div class="page" data-page="chi-siamo">
-  <div class="wrap crumb">Home › Chi siamo</div>
-  <section style="padding-top:var(--spacing-lg)">
-    <div class="wrap hero__grid">
-      <div>
-        <div class="kicker">Chi siamo</div>
-        <h1>Una realtà piccola che risponde davvero</h1>
-        <p class="lead">BF Service è una società giovane e dinamica, partner ideale per chi cerca qualità ed efficienza.
-        Fornisce assistenza, supporto e vendita nel settore Office Automation.</p>
-        <p>Competenza tecnica e organizzazione interna ci permettono di garantire interventi entro
-        le 8 ore lavorative successive alla chiamata, gestendo anche apparecchiature e marchi non forniti da noi,
-        mantenendo alta l'attenzione alle necessità del cliente e un ottimo rapporto qualità/prezzo.</p>
-        <div class="chips" style="margin-top:var(--spacing-md)">
-          <span class="chip">🏛 Fornitore MEPA</span>
-          <span class="chip">📍 Villanuova sul Clisi (BS)</span>
-        </div>
-      </div>
-      <div class="hero__video" style="aspect-ratio:1/1"><b>📷</b>
-        <span>Foto dell'officina e del titolare<br><small>(da fornire)</small></span></div>
-    </div>
-  </section>
-
-  <div class="trust">
-    <div class="wrap trust__grid">
-      <div><b>8 ore</b><span>tempo di intervento</span></div>
-      <div><b>6</b><span>province servite</span></div>
-      <div><b>12</b><span>marchi assistiti</span></div>
-      <div><b>MEPA</b><span>fornitore accreditato</span></div>
-    </div>
-  </div>
-
-  <section>
-    <div class="wrap grid g3">
-      <div class="card"><div class="card__ico">⏱</div><h4>Tempi dichiarati, non promessi</h4>
-        <p>Le 8 ore lavorative non sono uno slogan: è il modo in cui è organizzata l'agenda dei tecnici.</p></div>
-      <div class="card"><div class="card__ico">🤝</div><h4>Parli sempre con la stessa persona</h4>
-        <p>Niente call center e niente ticket che rimbalzano. Chi risponde al telefono conosce la tua macchina.</p></div>
-      <div class="card"><div class="card__ico">🏛</div><h4>Abilitati alla Pubblica Amministrazione</h4>
-        <p>Come fornitori MEPA lavoriamo con comuni, scuole ed enti con le procedure che richiedono.</p></div>
-    </div>
-  </section>
-</div>
-
-<!-- ================= FAQ ================= -->
-<div class="page" data-page="faq">
-  <div class="wrap crumb">Home › Domande frequenti</div>
-  <section style="padding-top:var(--spacing-lg)">
-    <div class="wrap" style="max-width:760px">
-      <div class="kicker">Domande frequenti</div>
-      <h1>Prima di chiamare, prova questi controlli</h1>
-      <p class="lead">Spesso la macchina non è rotta. Qui trovi le verifiche che risolvono i casi più comuni —
-      e se non bastano, sai già cosa dirci.</p>
-    </div>
-    <div class="wrap" style="max-width:800px;margin-top:var(--spacing-xl)">
-      <h3 style="margin-bottom:var(--spacing-md)">Guasti e malfunzionamenti</h3>
-      <details class="faq"><summary>La stampante non stampa ma è accesa</summary>
-        <div class="faq__body">Tre controlli nell'ordine: 1) c'è una coda di stampa bloccata sul computer? Svuotala e riprova.
-        2) Il cavo di rete o USB è collegato bene? 3) Sul display c'è un messaggio? Se dopo questi controlli non stampa, scrivici indicando il messaggio che vedi.</div></details>
-      <details class="faq"><summary>Le stampe escono con righe o macchie</summary>
-        <div class="faq__body">Quasi sempre è il toner o il tamburo, non la macchina. Prova a rimuovere e reinserire la cartuccia
-        (spesso basta) e stampa una pagina di prova. Se le righe restano nella stessa posizione, serve un intervento: segnalaci se sono verticali o orizzontali, ci aiuta molto.</div></details>
-      <details class="faq"><summary>Carta inceppata che non si sblocca</summary>
-        <div class="faq__body">Apri gli sportelli seguendo le frecce sul display ed estrai la carta <b>sempre nel senso di avanzamento</b>,
-        mai al contrario. Controlla anche il cassetto e il fronte-retro. Se il messaggio resta anche a macchina vuota, c'è un sensore da verificare: chiamaci.</div></details>
-      <details class="faq"><summary>La macchina dà un codice di errore</summary>
-        <div class="faq__body">Annota il codice esatto e scrivicelo: molti codici li riconosciamo subito e possiamo arrivare
-        con il ricambio giusto già in furgone, risparmiando un'uscita.</div></details>
-
-      <h3 style="margin:var(--spacing-xl) 0 var(--spacing-md)">Interventi e costi</h3>
-      <details class="faq"><summary>In quanto tempo intervenite?</summary>
-        <div class="faq__body">Entro 8 ore lavorative dalla chiamata, su tutte e sei le province che copriamo.</div></details>
-      <details class="faq"><summary>Riparate anche macchine comprate altrove?</summary>
-        <div class="faq__body">Sì, è una delle cose che facciamo da sempre: interveniamo su apparecchiature e marchi anche non forniti dalla nostra azienda.</div></details>
-      <details class="faq"><summary>Quanto costa l'uscita del tecnico?</summary>
-        <div class="faq__body">Dipende dalla zona. Il costo te lo diciamo prima di muoverci, insieme alla diagnosi. Vedi <a href="#/zone" style="color:var(--color-text-brand);font-weight:600">Dove operiamo</a>.</div></details>
-      <details class="faq"><summary>Conviene riparare o sostituire?</summary>
-        <div class="faq__body">Te lo diciamo noi in fase di preventivo, in modo onesto: se il costo della riparazione si avvicina al valore
-        della macchina, ti proponiamo alternative — acquisto o noleggio — senza spingerti a spendere.</div></details>
-
-      <h3 style="margin:var(--spacing-xl) 0 var(--spacing-md)">Noleggio e forniture</h3>
-      <details class="faq"><summary>Cosa comprende il canone di noleggio?</summary>
-        <div class="faq__body">Macchina, assistenza, manutenzione e ricambi. L'obiettivo è che tu abbia un costo mensile prevedibile senza pensare ai guasti.</div></details>
-      <details class="faq"><summary>Lavorate con enti pubblici?</summary>
-        <div class="faq__body">Sì, siamo fornitori MEPA e siamo abituati alle procedure di acquisto della Pubblica Amministrazione.</div></details>
-    </div>
-    <div class="wrap center" style="margin-top:var(--spacing-xl)">
-      <p class="lead">Non hai trovato la risposta?</p>
-      <a href="#/sos" class="btn btn--urgent">Scrivici il problema</a>
-    </div>
-  </section>
-</div>
-
-<!-- ================= CONTATTI ================= -->
-<div class="page" data-page="contatti">
-  <div class="wrap crumb">Home › Contatti</div>
-  <section style="padding-top:var(--spacing-lg)">
-    <div class="wrap" style="max-width:760px">
-      <div class="kicker">Contatti</div>
-      <h1>Parliamone</h1>
-      <p class="lead">Per un guasto urgente il telefono resta la via più rapida.
-      Per preventivi, noleggi e forniture va benissimo anche l'email.</p>
-    </div>
-
-    <div class="wrap grid g2" style="margin-top:var(--spacing-xl);align-items:start">
-      <div>
-        <div class="card" style="margin-bottom:var(--spacing-md)">
-          <h4>📞 Telefono</h4>
-          <p><b>S.O.S / cellulare:</b> <a href="tel:+393385805517" style="color:var(--color-text-brand);font-weight:600">338 580 5517</a><br>
-             <b>Ufficio:</b> <a href="tel:+390365690197" style="color:var(--color-text-brand);font-weight:600">0365 690197</a></p>
-        </div>
-        <div class="card" style="margin-bottom:var(--spacing-md)">
-          <h4>✉️ Email</h4>
-          <p><a href="mailto:info@bf-service.net" style="color:var(--color-text-brand);font-weight:600">info@bf-service.net</a></p>
-        </div>
-        <div class="card" style="margin-bottom:var(--spacing-md)">
-          <h4>📍 Sede</h4>
-          <p>Via Carpen, 39<br>25089 Villanuova sul Clisi (BS)</p>
-        </div>
-        <div class="card">
-          <h4>🕐 Orari</h4>
-          <p style="color:var(--color-text-urgent)"><b>Da confermare con papà.</b></p>
-        </div>
-      </div>
-
-      <div>
-        <div class="hero__video" style="aspect-ratio:4/3;margin-bottom:var(--spacing-md)">
-          <b>🗺</b><span>Mappa Google — Via Carpen 39,<br>Villanuova sul Clisi (BS)</span></div>
-        <div class="aside-card">
-          <b>Richiesta di preventivo</b>
-          <p style="margin-bottom:12px">Per noleggio, acquisto o consulenza scrivici: ti rispondiamo con una proposta su misura.</p>
-          <a href="#/sos" class="btn btn--primary btn--sm" style="width:100%">Vai al modulo</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+</section>
+<div class="trust"><div class="wrap trust__grid"><div class="trust__i"><b>8 ore</b><span>tempo massimo di intervento</span></div><div class="trust__i"><b>5 province</b><span>Brescia, Bergamo, Verona, Mantova, Cremona</span></div><div class="trust__i"><b>12 marchi</b><span>assistenza multimarca</span></div><div class="trust__i"><b>On-site</b><span>veniamo noi: non smonti e non spedisci nulla</span></div></div></div>
+<section class=""><div class="wrap"><div class="sec-head center reveal"><div class="kicker">I nostri servizi per l'ufficio</div><h2>Tutto quello che serve alla tua stampa, con un unico interlocutore</h2><p class="lead">Dalla riparazione urgente al noleggio a canone fisso, fino alla fornitura di macchine e consumabili.</p></div><div class="grid g4"><a class="card reveal acc-orange" href="assistenza-stampanti.html"><div class="card__ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.6 17.4a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.2-.5-.5-2.2z"/></svg></div><h3 style="font-size:19px">Assistenza e riparazione stampanti</h3><p>Interventi on-site su stampanti laser, multifunzione e plotter. Risolviamo guasti anche su macchine non acquistate da noi.</p><span class="card__link">Scopri l'assistenza <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="card reveal acc-blue" href="noleggio-stampanti-fotocopiatrici.html"><div class="card__ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l2 2M15 8l2 2"/></svg></div><h3 style="font-size:19px">Noleggio fotocopiatrici e multifunzione</h3><p>Noleggio operativo a canone fisso mensile, con assistenza, manutenzione e toner inclusi. Nessuna sorpresa a bilancio.</p><span class="card__link">Scopri il noleggio <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="card reveal acc-amber" href="vendita-stampanti-fotocopiatrici.html"><div class="card__ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg></div><h3 style="font-size:19px">Vendita macchine per ufficio e consumabili</h3><p>Stampanti, multifunzione A3/A4, plotter, computer e toner dei principali marchi, scelti in base a quanto stampi davvero.</p><span class="card__link">Scopri la vendita <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="card reveal acc-yellow" href="servizi.html#consulenza"><div class="card__ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg></div><h3 style="font-size:19px">Consulenza e software gestionali</h3><p>Analisi dei costi di stampa per ridurre sprechi di carta e toner, configurazione in rete e software gestionali per l'ufficio.</p><span class="card__link">Richiedi un'analisi <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></div></section>
+<section class="sec-subtle"><div class="wrap"><div class="sec-head center reveal"><div class="kicker">Come lavoriamo</div><h2>Tre passaggi per tornare a stampare, senza sorprese</h2></div><div class="steps"><div class="step reveal"><div class="step__n">1</div><h3 style="font-size:18px">Ci segnali il guasto</h3><p>Compili il modulo in un minuto o ci chiami. Ci bastano marca, modello e il messaggio di errore che vedi.</p></div><div class="step reveal"><div class="step__n">2</div><h3 style="font-size:18px">Diagnosi e preventivo chiaro</h3><p>Ti richiamiamo, capiamo il problema e ti diciamo costo dell'uscita e dell'intervento prima di partire.</p></div><div class="step reveal"><div class="step__n">3</div><h3 style="font-size:18px">Intervento on-site entro 8 ore</h3><p>Il tecnico arriva nella tua sede con i ricambi necessari. Nessuno smontaggio o spedizione a tuo carico.</p></div></div></div></section>
+<section class=""><div class="wrap"><div class="sec-head center reveal"><div class="kicker">Assistenza multimarca</div><h2>Ripariamo le principali marche di stampanti e multifunzione</h2><p class="lead">Interveniamo anche se la macchina l'hai comprata altrove. Tocca un marchio per i dettagli.</p></div><div class="brands"><a class="brand" href="marchi.html#kyocera">Kyocera</a><a class="brand" href="marchi.html#canon">Canon</a><a class="brand" href="marchi.html#ricoh">Ricoh</a><a class="brand" href="marchi.html#hp">HP</a><a class="brand" href="marchi.html#konica-minolta">Konica Minolta</a><a class="brand" href="marchi.html#sharp">Sharp</a><a class="brand" href="marchi.html#brother">Brother</a><a class="brand" href="marchi.html#epson">Epson</a><a class="brand" href="marchi.html#oki">OKI</a><a class="brand" href="marchi.html#samsung">Samsung</a><a class="brand" href="marchi.html#develop">Develop</a><a class="brand" href="marchi.html#olivetti">Olivetti</a></div></div></section>
+<section style="padding-top:0"><div class="wrap"><div class="band reveal"><svg class="leafbg" viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg><div><h2>Hai una stampante o una multifunzione bloccata in azienda?</h2><p>Descrivici il guasto: ti richiamiamo entro 8 ore lavorative con una prima diagnosi e un preventivo trasparente.</p></div><div class="btns"><a href="richiesta-intervento.html" class="btn btn--urgent">Richiedi intervento</a><a href="tel:+393385805517" class="btn btn--light"><svg class="ico ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg> 338 580 5517</a></div></div></div></section>
+<section class="sec-subtle"><div class="wrap"><div class="sec-head center reveal"><div class="kicker">Dove siamo</div><h2>Di casa in Valle Sabbia, operativi in tutta la Lombardia orientale</h2><p class="lead">La sede è a Villanuova sul Clisi (BS): da qui raggiungiamo il Garda, Brescia e le province vicine.</p></div><div class="zones"><div class="zone zone--home reveal"><b>Garda e Valle Sabbia</b><span>Salò, Gavardo, Desenzano, Lonato, Vobarno</span></div><div class="zone reveal"><b>Brescia e provincia</b><span>Città, hinterland e Franciacorta</span></div><div class="zone reveal"><b>Verona e provincia</b><span>Città, Villafranca, Bussolengo, Legnago</span></div><div class="zone reveal"><b>Bergamo e provincia</b><span>Città e provincia</span></div><div class="zone reveal"><b>Mantova e provincia</b><span>Città e provincia</span></div><div class="zone reveal"><b>Cremona e Crema</b><span>Città, Cremasco e provincia</span></div></div><div class="center" style="margin-top:24px"><a class="btn btn--secondary" href="zone.html">Tutte le zone e i costi di uscita</a></div></div></section>
+<section class=""><div class="wrap"><div class="sec-head center reveal"><div class="kicker">Domande frequenti</div><h2>Prima di chiamare, prova questo</h2></div><div class="narrow" style="margin:0 auto"><details class="faq"><summary>La stampante non stampa ma sembra accesa. È rotta?</summary><div class="faq__body"><p>Nella maggior parte dei casi no. Controlla che non ci sia una coda di stampa bloccata sul computer, che il cavo di rete sia collegato e che sul display non ci sia un messaggio di errore. Se dopo questi controlli non stampa, scrivici indicando il messaggio che vedi: trovi tutti i passaggi nella <a href="guida-stampante-non-stampa.html">guida dedicata</a>.</p></div></details><details class="faq"><summary>Riparate anche macchine che non ho comprato da voi?</summary><div class="faq__body"><p>Sì. Interveniamo su stampanti, fotocopiatrici e plotter di 12 marchi anche se li hai acquistati altrove: è una delle cose che facciamo da sempre.</p></div></details><details class="faq"><summary>Quanto costa l'uscita del tecnico?</summary><div class="faq__body"><p>Dipende dalla distanza dalla nostra sede. Il costo te lo comunichiamo sempre prima di muoverci, insieme alla diagnosi: nessuna sorpresa in fattura. Vedi <a href="zone.html">Dove operiamo</a>.</p></div></details><details class="faq"><summary>In quanto tempo intervenite?</summary><div class="faq__body"><p>Entro 8 ore lavorative dalla chiamata, in tutta la zona che copriamo. È il tempo su cui organizziamo ogni giorno l'agenda dei tecnici.</p></div></details><div class="center" style="margin-top:24px"><a href="faq.html" class="btn btn--secondary">Tutte le domande</a> <a href="guide.html" class="btn btn--secondary">Guide ai guasti più comuni</a></div></div></div></section>
 
 </main>
-
 <footer class="ftr">
   <div class="wrap ftr__grid">
     <div>
-      <div class="logo" style="color:#fff;margin-bottom:var(--spacing-sm)">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg>
-        <span>BF Service<small style="color:#8b8f85">OFFICE AUTOMATION</small></span>
-      </div>
-      <p style="font-size:14px">Assistenza, noleggio e vendita per l'ufficio.<br>Riparazioni hardware multimarca on-site.</p>
-      <div class="mepa">🏛 Fornitore MEPA — Pubblica Amministrazione</div>
+      <a href="index.html" class="logo" style="margin-bottom:12px"><svg class="" viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5C13 5 6 12 6 23c0 1.5.3 3 .8 4.2C10 20 16 16 24 14c-6 3.4-10 8-12.4 13.7C21 28 27 21 27 5Z" fill="#80B040"/></svg><span>BF Service<small style="color:#8b8f85">OFFICE AUTOMATION</small></span></a>
+      <p>Assistenza, riparazione, noleggio e vendita di stampanti, fotocopiatrici, multifunzione e plotter per uffici, aziende ed enti.</p>
+      <div class="mepa"><svg class="ico ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg> Fornitore abilitato MEPA</div>
     </div>
     <div><h4>Servizi</h4>
-      <a href="#/servizi">Assistenza e riparazioni</a><a href="#/servizi">Noleggio</a>
-      <a href="#/servizi">Vendita</a><a href="#/servizi">Consulenza</a></div>
+      <a href="assistenza-stampanti.html">Riparazione stampanti</a><a href="assistenza-fotocopiatrici-multifunzione.html">Assistenza fotocopiatrici</a>
+      <a href="plotter.html">Plotter</a><a href="noleggio-stampanti-fotocopiatrici.html">Noleggio</a>
+      <a href="vendita-stampanti-fotocopiatrici.html">Vendita e consumabili</a><a href="pubblica-amministrazione-mepa.html">Pubblica Amministrazione</a></div>
     <div><h4>Azienda</h4>
-      <a href="#/chi-siamo">Chi siamo</a><a href="#/zone">Dove operiamo</a>
-      <a href="#/marchi">Marchi assistiti</a><a href="#/faq">FAQ</a></div>
+      <a href="chi-siamo.html">Chi siamo</a><a href="zone.html">Dove operiamo</a><a href="marchi.html">Marchi assistiti</a>
+      <a href="guide.html">Guide</a><a href="faq.html">Domande frequenti</a><a href="contatti.html">Contatti</a></div>
     <div><h4>Contatti</h4>
       <a href="tel:+393385805517">S.O.S 338 580 5517</a>
       <a href="tel:+390365690197">Ufficio 0365 690197</a>
       <a href="mailto:info@bf-service.net">info@bf-service.net</a>
-      <p style="font-size:14px;margin-top:8px">Via Carpen 39<br>25089 Villanuova sul Clisi (BS)</p></div>
+      <p style="margin-top:8px">Via Carpen, 39<br>25089 Villanuova sul Clisi (BS)</p></div>
   </div>
   <div class="wrap ftr__legal">
-    <span>© 2026 BF Service di Bodanza Francesco — P.IVA 03226100984 — REA 515889</span>
-    <span>Privacy Policy · Cookie Policy</span>
+    <span>© 2026 BF Service di Bodanza Francesco — P.IVA 03226100984 — REA BS-515889</span>
+    <span><a href="privacy.html">Privacy policy</a> · <a href="privacy.html#cookie">Cookie policy</a></span>
   </div>
 </footer>
-
-<div class="mbar">
-  <a href="tel:+393385805517">☎ Chiama</a>
-  <a href="#/sos">Ho un guasto</a>
-</div>
-
-<script>
-const PAGES = ['home','sos','servizi','marchi','zone','chi-siamo','faq','contatti'];
-function route(){
-  const id = (location.hash.replace('#/','') || 'home');
-  const target = PAGES.includes(id) ? id : 'home';
-  document.querySelectorAll('.page').forEach(p => p.classList.toggle('is-on', p.dataset.page === target));
-  document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#/' + target));
-  document.getElementById('nav').classList.remove('is-open');
-  window.scrollTo({ top: 0, behavior: 'instant' });
-}
-window.addEventListener('hashchange', route);
-window.addEventListener('DOMContentLoaded', route);
-document.getElementById('burger').addEventListener('click', () => {
-  document.getElementById('nav').classList.toggle('is-open');
-});
-route();
-</script>
+<div class="mbar"><a href="tel:+393385805517"><svg class="ico ico-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg> Chiama</a><a href="richiesta-intervento.html">Ho un guasto</a></div>
+<script src="main.js" defer></script>
 </body>
 </html>

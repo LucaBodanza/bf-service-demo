@@ -1,0 +1,34 @@
+# BF Service di Bodanza Francesco
+
+> Assistenza, riparazione, noleggio e vendita di stampanti, fotocopiatrici multifunzione e plotter per uffici, aziende e Pubblica Amministrazione (fornitore abilitato MEPA). Intervento on-site entro 8 ore lavorative, anche su marchi non venduti da noi.
+
+- Sede: Via Carpen, 39, 25089 Villanuova sul Clisi (BS), Italia
+- Zone servite: province di Brescia, Bergamo, Verona, Mantova e Cremona (compreso il Cremasco); zona di casa: Lago di Garda e Valle Sabbia
+- Marchi assistiti: Kyocera, Canon, Ricoh, HP, Konica Minolta, Sharp, Brother, Epson, OKI, Samsung, Develop, Olivetti
+- Telefono S.O.S: 338 580 5517 · Email: info@bf-service.net
+
+## Pagine
+
+- [Assistenza stampanti e fotocopiatrici a Brescia](index.html): Riparazione e noleggio di stampanti, fotocopiatrici, multifunzione e plotter. Tecnico in sede entro 8 ore lavorative, anche su marchi non venduti da noi.
+- [Servizi per stampanti e fotocopiatrici](servizi.html): Assistenza e riparazione, noleggio, vendita e consulenza per stampanti, fotocopiatrici, multifunzione e plotter. Un solo interlocutore per tutto l'ufficio.
+- [Riparazione stampanti Brescia – Tecnico in sede](assistenza-stampanti.html): Stampante guasta? Assistenza multimarca HP, Epson, Canon, Brother, Kyocera. Diagnosi e preventivo prima di intervenire, tecnico in sede in 8 ore.
+- [Assistenza fotocopiatrici Brescia](assistenza-fotocopiatrici-multifunzione.html): Riparazione e manutenzione di fotocopiatrici e multifunzione A4 e A3 per uffici: Kyocera, Ricoh, Canon, Sharp, Konica Minolta, Olivetti. Intervento on-site.
+- [Assistenza e riparazione plotter HP DesignJet](plotter.html): Riparazione, manutenzione e noleggio di plotter HP DesignJet, Canon ed Epson per studi tecnici. A0 e A1, intervento in sede a Brescia, Verona e Bergamo.
+- [Noleggio fotocopiatrici e stampanti a Brescia](noleggio-stampanti-fotocopiatrici.html): Multifunzione e fotocopiatrici A4 e A3 a noleggio con assistenza, ricambi e manutenzione inclusi. Canone fisso, nessun anticipo. Preventivo su misura.
+- [Vendita fotocopiatrici e stampanti per ufficio](vendita-stampanti-fotocopiatrici.html): Fotocopiatrici, multifunzione e stampanti professionali, plotter, toner e carta, scelti in base a quanto stampi. Consegna, installazione e assistenza.
+- [Computer e PC per l'ufficio](computer-e-pc.html): Vendita di computer e periferiche per l'ufficio, configurazione in rete di stampanti e multifunzione, assistenza sulle postazioni di lavoro.
+- [Fornitore MEPA: noleggio e assistenza stampanti per la PA](pubblica-amministrazione-mepa.html): Noleggio, vendita e assistenza di fotocopiatrici e stampanti per comuni, scuole ed enti tramite MEPA. Ordine diretto, trattativa diretta e assistenza on-site.
+- [Assistenza multimarca: Kyocera, Ricoh, Canon, HP e altri](marchi.html): Ripariamo stampanti, fotocopiatrici e plotter di 12 marchi, anche non comprati da noi: Kyocera, Canon, Ricoh, HP, Konica Minolta, Sharp, Brother, Epson.
+- [Zone servite: Brescia, Garda, Verona, Bergamo](zone.html): Assistenza on-site in provincia di Brescia, sul Lago di Garda, in Valle Sabbia e nelle province di Verona, Bergamo, Mantova e Cremona.
+- [Assistenza stampanti Salò, Garda e Valle Sabbia](zona-garda-valle-sabbia.html): Sede a Villanuova sul Clisi: tecnico per stampanti, fotocopiatrici e plotter a Salò, Gavardo, Desenzano, Lonato e in Valle Sabbia, entro 8 ore lavorative.
+- [Chi siamo – BF Service di Bodanza Francesco, Villanuova s/C](chi-siamo.html): BF Service di Bodanza Francesco: da oltre 10 anni assistenza, noleggio e vendita di stampanti e fotocopiatrici. Sede a Villanuova sul Clisi (BS).
+- [Domande frequenti su riparazione e noleggio](faq.html): Quanto costa riparare una stampante, conviene il noleggio, in quanto tempo arriva il tecnico: le risposte alle domande che ci fanno più spesso.
+- [Contatti e orari](contatti.html): Telefono, email, indirizzo e orari di BF Service a Villanuova sul Clisi (BS). Per un guasto urgente chiama il numero S.O.S.
+- [Richiedi un intervento tecnico](richiesta-intervento.html): Compila il modulo o chiamaci: ti richiamiamo entro 8 ore lavorative con diagnosi e preventivo per stampanti, fotocopiatrici e plotter.
+- [Guide: stampante non stampa, offline, righe](guide.html): Guide pratiche per risolvere da soli i problemi più comuni di stampanti e fotocopiatrici, e capire quando serve il tecnico.
+- [La stampante non stampa: 7 controlli](guida-stampante-non-stampa.html): Stampante accesa che non stampa, non stampa il nero o i PDF, o stampa solo la pagina di prova: i controlli da fare in ordine e quando serve il tecnico.
+- [Stampante offline: cosa fare](guida-stampante-offline.html): Il computer dice che la stampante è offline o non si collega al wifi? Ecco le cause più comuni e come risolvere in pochi minuti, prima di chiamare l'assistenza.
+- [Stampante che fa righe o fogli bianchi](guida-righe-fogli-bianchi.html): Righe verticali o orizzontali, strisce, stampe sbiadite o fogli bianchi: come capire se è il toner, il tamburo o un guasto, e cosa fare.
+- [Carta inceppata: come toglierla](guida-carta-inceppata.html): Come rimuovere la carta inceppata da stampanti e fotocopiatrici in sicurezza, perché si inceppa sempre e cosa fare se il messaggio non sparisce.
+- [Codici errore Kyocera: cosa fare](guida-codici-errore-kyocera.html): La Kyocera mostra un codice di errore (es. C6000)? Cosa indicano in generale le famiglie di codici, cosa puoi fare tu e quando chiamare il tecnico.
+- [Noleggio o acquisto della fotocopiatrice?](guida-noleggio-o-acquisto.html): Conviene noleggiare o comprare la stampante o la fotocopiatrice dell'ufficio? Costi, vantaggi, come funziona il noleggio operativo e come cambiare fornitore.
