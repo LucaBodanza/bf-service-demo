@@ -1,0 +1,51 @@
+COMMANDER DEV — editor del sito BF Service
+==========================================
+
+1) PRIMA VOLTA (solo Luca, 5 minuti)
+   a. Su GitHub, nel repo bf-service-demo: "Add file" → "Upload files".
+      Trascina l'intera cartella "commander" e premi "Commit changes".
+   b. Crea il token: github.com → Settings → Developer settings →
+      Personal access tokens → Fine-grained tokens → Generate new token.
+        - Repository access: Only select repositories → bf-service-demo
+        - Permissions → Contents: Read and write
+        - Permissions → Pages: Read-only
+      Copia il token (inizia con github_pat_...). Va dato anche a Giuseppe:
+      passaglielo a voce o di persona, non per email.
+
+2) APRIRE L'APP (Mac e PC)
+   - Apri in Chrome: https://lucabodanza.github.io/bf-service-demo/commander/
+   - Per installarla come app: icona "Installa" a destra nella barra degli
+     indirizzi (oppure menu ⋮ → Trasmetti, salva e condividi → Installa).
+   - Accedi: DEV_L (Luca, Web Designer) oppure DEV_G (Giuseppe, Programmer).
+   - ⚙ Impostazioni → incolla il token → "Salva e ricarica".
+
+3) COME SI LAVORA
+   - ✎ Modifica: clicca un elemento per selezionarlo.
+       Doppio clic su un testo per riscriverlo.
+       Alt + passa sopra un altro elemento = vedi le distanze in px.
+       Esc = seleziona il contenitore.
+   - ▶ Prototipo Interattivo: navighi il sito come un visitatore.
+   - 🖥 1440 / ▭ 820 / ▯ 390: computer, tablet, cellulare.
+   - Le modifiche sono salvate in automatico sul tuo computer (bozza).
+   - ↻ Aggiorna sito: pubblica su GitHub. La demo si aggiorna in circa 1 minuto.
+   - Se l'altro pubblica qualcosa, compare un avviso blu "Aggiorna".
+
+4) CHI FA COSA
+   Luca  (DEV_L · Web Designer):
+     - Design: colori, font, spazi, immagini, link.
+       "Applica a" → solo un elemento, oppure tutta una classe in tutto il sito.
+     - Variabili: i colori e le misure del sito, come in Figma.
+     - Segnalazioni.
+   Giuseppe (DEV_G · Programmer):
+     - Blocco: attributi e HTML.
+     - SEO: titolo, descrizione, anteprima Google, JSON-LD, controlli, sitemap.
+     - Testi: cerca e sostituisci su tutte le pagine.
+     - Codice: tutti i file.
+     - Analitica: GA4 e Search Console.
+     - Segnalazioni.
+
+5) DA SAPERE
+   - Il login DEV serve a dividere i ruoli. La vera chiave è il token GitHub:
+     senza token l'app è in sola lettura.
+   - La cartella /commander/ è online insieme alla demo (nascosta a Google).
+   - Quando si passa a WordPress, il sito finale si prende da GitHub così com'è.
