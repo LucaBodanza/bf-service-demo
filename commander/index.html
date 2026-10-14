@@ -74,6 +74,8 @@ label{display:block;color:var(--mut);font-size:11px;margin:0 0 3px}
 .login{background:radial-gradient(circle at 30% 20%,#2a3a1c,#121314 60%)}
 .login .box{width:min(380px,94vw);text-align:left}
 .toast{position:fixed;bottom:40px;right:16px;background:#2b2f32;border:1px solid var(--line);padding:9px 12px;border-radius:8px;z-index:200;display:none;max-width:360px}
+.drop{border:2px dashed #4a4f54;border-radius:10px;padding:16px 10px;text-align:center;color:var(--mut);cursor:pointer;margin-bottom:10px;line-height:1.5}.drop.over,.drop:hover{border-color:var(--acc);color:var(--tx);background:#2a3520}
+.tree .dt{box-shadow:inset 0 2px 0 var(--blue)}.tree .db{box-shadow:inset 0 -2px 0 var(--blue)}
 .files li{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--line)}
 kbd{background:#2a2d30;border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:10px}
 @media (max-width:1100px){.main{grid-template-columns:190px 1fr 290px}}
@@ -90,7 +92,7 @@ kbd{background:#2a2d30;border:1px solid var(--line);border-radius:4px;padding:0 
   <div class="sp"></div>
   <span class="chip" id="srcChip">…</span>
   <button class="pri" id="pubBtn" title="Aggiorna il sito online">↻ Aggiorna sito<span class="badge" id="dirtyN" hidden>0</span></button>
-  <button id="setBtn" title="Impostazioni">⚙</button>
+  <button id="liveBtn" title="Apri il sito online (versione appena pubblicata)">↗ Sito</button><button id="setBtn" title="Impostazioni">⚙</button>
   <span class="chip" id="userChip"></span><button id="outBtn" title="Esci">⏻</button>
  </div>
  <div class="main">
@@ -115,7 +117,7 @@ kbd{background:#2a2d30;border:1px solid var(--line);border-radius:4px;padding:0 
    </div>
   </div>
  </div>
- <div class="foot"><span id="fPage"></span><span id="fSel"></span><span class="sp"></span><span>Alt + passa sopra = distanze</span><span><kbd>E</kbd> modifica <kbd>P</kbd> prototipo <kbd>Esc</kbd> genitore <kbd>Canc</kbd> elimina</span><span id="fSync"></span></div>
+ <div class="foot"><span id="fPage"></span><span id="fSel"></span><span class="sp"></span><span>Trascina = sposta · Frecce = ±1px (Shift ±10) · Alt + passa sopra = distanze</span><span><kbd>E</kbd> modifica <kbd>P</kbd> prototipo <kbd>Esc</kbd> genitore <kbd>Canc</kbd> elimina</span><span id="fSync"></span></div>
 </div>
 
 <div class="modal login on" id="login"><form class="box" id="loginForm" autocomplete="on">
@@ -255,8 +257,8 @@ $('#undo').onclick=()=>{if(hist.length)restore(hist.pop(),fut)};$('#redo').oncli
 function buildDoc(){
  let h='<!DOCTYPE html>\n'+model.documentElement.outerHTML;
  h=h.replace(/<head([^>]*)>/i,`<head$1><base href="${esc(cfg.site)}">`);
- if(files[CSSF])h=h.replace(/<link[^>]+href="style\.css"[^>]*>/,()=>'<style id="cd-css">'+files[CSSF].text+'</style>');
- if(files[JSF])h=h.replace(/<script[^>]+src="main\.js"[^>]*><\/script>/,()=>'<script>'+files[JSF].text.replace(/<\/script/gi,'<\\/script')+'<\/script>');
+ if(files[CSSF])h=h.replace(/<link[^>]+href="style\.css(\?[^"]*)?"[^>]*>/,()=>'<style id="cd-css">'+files[CSSF].text+'</style>');
+ if(files[JSF])h=h.replace(/<script[^>]+src="main\.js(\?[^"]*)?"[^>]*><\/script>/,()=>'<script>'+files[JSF].text.replace(/<\/script/gi,'<\\/script')+'<\/script>');
  for(const p in files)if(files[p].bin&&files[p].b64)h=h.split('"'+p+'"').join('"data:'+(files[p].mime||'image/jpeg')+';base64,'+files[p].b64+'"');
  return h}
 let pendingSel=null;function rerenderSel(id){pendingSel=id;render()}
@@ -274,20 +276,21 @@ $$('#modeSeg button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
 function setMode(m){mode=m;$$('#modeSeg button').forEach(x=>x.classList.toggle('on',x.dataset.m===m));const d=$('#ifr').contentDocument;if(d)d.documentElement.classList.toggle('cd-edit',m==='edit');drawOv()}
 
 /* ---------- interazione dentro l'iframe ---------- */
-let altDown=false;
+let altDown=false,drag=null,dragEnd=false;
 function setupFrame(){
  const d=$('#ifr').contentDocument,w=d.defaultView;
  const st=d.createElement('style');st.textContent=`.cd-edit [data-cd]{cursor:default}.cd-edit [contenteditable=true]{outline:2px solid #1E64F0!important;cursor:text}
+ html.cd-edit [data-cd-off]{opacity:.3!important;outline:2px dashed #e5484d!important}
  #cd-ov{position:fixed;inset:0;pointer-events:none;z-index:2147483647}#cd-ov div{position:fixed;box-sizing:border-box}
  #cd-ov .s{border:2px solid #1E64F0}#cd-ov .h{border:1px dashed #1E64F0}#cd-ov .pd{background:rgba(128,176,64,.28)}#cd-ov .mg{background:rgba(245,165,35,.25)}
  #cd-ov .lb{background:#1E64F0;color:#fff;font:600 11px/1 Inter,sans-serif;padding:3px 5px;border-radius:3px;white-space:nowrap}
  #cd-ov .ds{background:#e5484d}#cd-ov .dl{background:#e5484d;color:#fff;font:600 10px/1 Inter,sans-serif;padding:2px 4px;border-radius:3px}`;
  d.head.appendChild(st);const ov=d.createElement('div');ov.id='cd-ov';d.body.appendChild(ov);
  d.documentElement.classList.toggle('cd-edit',mode==='edit');
- d.addEventListener('mouseover',e=>{if(mode!=='edit')return;hov=e.target.closest('[data-cd]');drawOv()},true);
+ d.addEventListener('mouseover',e=>{if(mode!=='edit')return;hov=pick(e.target);drawOv()},true);
  d.addEventListener('mouseleave',()=>{hov=null;drawOv()});
  d.addEventListener('click',e=>{
-  if(mode==='edit'){if(e.target.isContentEditable)return;e.preventDefault();e.stopPropagation();const t=e.target.closest('[data-cd]');if(t)selectEl(t);return}
+  if(mode==='edit'){if(dragEnd){e.preventDefault();e.stopPropagation();return}if(e.target.isContentEditable)return;e.preventDefault();e.stopPropagation();const t=pick(e.target);if(t)selectEl(t);return}
   const a=e.target.closest('a[href]');if(!a)return;const href=a.getAttribute('href');
   if(href.startsWith('#')){e.preventDefault();const t=href.length>1&&d.getElementById(href.slice(1));if(t)t.scrollIntoView({behavior:'smooth'});return}
   if(/^(mailto:|tel:)/.test(href)){e.preventDefault();toast('Prototipo: aprirebbe '+href);return}
@@ -296,8 +299,20 @@ function setupFrame(){
   if(files[p])openPage(p,hs?'#'+hs:'');else toast('Pagina non trovata: '+p)},true);
  d.addEventListener('submit',e=>{e.preventDefault();toast(mode==='proto'?'Prototipo: il modulo verrebbe inviato (invio disattivato nell’editor).':'')},true);
  d.addEventListener('dblclick',e=>{if(mode!=='edit')return;const t=e.target.closest('[data-cd]');if(t&&canText(t))startText(t)},true);
+ d.addEventListener('dragover',e=>{if(mode==='edit'&&e.dataTransfer.types.includes('Files')){e.preventDefault();hov=pick(e.target);drawOv()}},true);
+ d.addEventListener('drop',e=>{const fs=[...e.dataTransfer.files];if(!fs.length)return;e.preventDefault();const t=pick(e.target);if(!t)return;selectEl(t);fs.length>1?batchLogos(fs):smartImg(fs[0])},true);
+ d.addEventListener('dragstart',e=>{if(mode==='edit')e.preventDefault()},true);
+ d.addEventListener('mousedown',e=>{if(mode!=='edit'||e.button!==0||!sel||e.target.isContentEditable)return;const t=pick(e.target);if(t&&(t===sel||sel.contains(t))){drag={x:e.clientX,y:e.clientY,on:false};e.preventDefault()}},true);
+ d.addEventListener('mousemove',e=>{if(!drag)return;if(!drag.on&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<6)return;drag.on=true;
+  const t=pick(d.elementFromPoint(e.clientX,e.clientY)||d.body);drag.t=null;drawOv();if(!t||t===sel||sel.contains(t)||t.contains(sel)||t===d.body)return;
+  const r=t.getBoundingClientRect(),pc=w.getComputedStyle(t.parentElement),row=(pc.display.includes('flex')&&!pc.flexDirection.startsWith('column'))||pc.display.includes('grid');
+  drag.t=t;drag.before=row?e.clientX<r.left+r.width/2:e.clientY<r.top+r.height/2;const ov=d.getElementById('cd-ov');
+  ov.appendChild(box(d,'ds',row?{left:(drag.before?r.left:r.right)-2,top:r.top,width:4,height:r.height}:{left:r.left,top:(drag.before?r.top:r.bottom)-2,width:r.width,height:4}))},true);
+ d.addEventListener('mouseup',()=>{if(!drag)return;const g=drag;drag=null;if(!g.on)return;dragEnd=true;setTimeout(()=>dragEnd=false,50);if(!g.t){drawOv();return}
+  const mt=byId(g.t.getAttribute('data-cd'));if(!mt||!msel)return;snapshot();g.before?mt.before(msel):mt.after(msel);const id=msel.getAttribute('data-cd');commitModel();rerenderSel(id);toast('Elemento spostato')},true);
  d.addEventListener('keydown',keys,true);w.addEventListener('scroll',drawOv,{passive:true});w.addEventListener('resize',drawOv);
 }
+const pick=t=>{const sv=t.closest&&t.closest('svg');return sv&&sv.hasAttribute('data-cd')?sv:t.closest('[data-cd]')};
 const canText=el=>!['IMG','svg','INPUT','SELECT','TEXTAREA','IFRAME','VIDEO'].includes(el.tagName)&&el.textContent.trim()&&[...el.children].every(c=>['B','STRONG','I','EM','A','SPAN','BR','SMALL','SUP','SUB'].includes(c.tagName));
 function startText(el){selectEl(el);el.contentEditable='true';el.focus();snapshot();
  const end=()=>{el.removeEventListener('blur',end);el.contentEditable='false';el.removeAttribute('contenteditable');const m=byId(el.getAttribute('data-cd'));
@@ -330,6 +345,8 @@ function keys(e){
  if(e.type!=='keydown')return;const t=e.target;if(t.isContentEditable||/INPUT|TEXTAREA|SELECT/.test(t.tagName))return;
  const mod=e.metaKey||e.ctrlKey;
  if(mod&&e.key.toLowerCase()==='z'){e.preventDefault();(e.shiftKey?$('#redo'):$('#undo')).click()}
+ else if(e.altKey&&(e.key==='ArrowUp'||e.key==='ArrowDown')&&sel){e.preventDefault();act(e.key==='ArrowUp'?'up':'down')}
+ else if(sel&&mode==='edit'&&!mod&&!e.altKey&&/^Arrow/.test(e.key)){e.preventDefault();nudge(e.key,e.shiftKey)}
  else if(mod&&e.key.toLowerCase()==='d'&&sel){e.preventDefault();act('dup')}
  else if(mod&&e.key.toLowerCase()==='s'){e.preventDefault();openPub()}
  else if(e.key==='e'||e.key==='E')setMode('edit');else if(e.key==='p'||e.key==='P')setMode('proto');
@@ -350,10 +367,15 @@ function act(a){if(!msel)return;snapshot();const id=msel.getAttribute('data-cd')
 
 /* ---------- livelli ---------- */
 function renderTree(){const skip=/^(SCRIPT|STYLE|svg|path|NOSCRIPT|BR)$/;
- const lab=e=>`${e.tagName.toLowerCase()}${e.className&&typeof e.className==='string'?'<i>.'+esc(e.className.split(' ').filter(c=>!/^(reveal|in)$/.test(c)).slice(0,2).join('.'))+'</i>':''} ${esc((e.children.length?'':e.textContent).trim().slice(0,28))}`;
+ const lab=e=>`${e.hasAttribute('data-cd-off')?'🚫 ':''}${e.tagName.toLowerCase()}${e.className&&typeof e.className==='string'?'<i>.'+esc(e.className.split(' ').filter(c=>!/^(reveal|in)$/.test(c)).slice(0,2).join('.'))+'</i>':''} ${esc((e.children.length?'':e.textContent).trim().slice(0,28))}`;
  const walk=e=>{const kids=[...e.children].filter(c=>!skip.test(c.tagName)&&c.hasAttribute('data-cd'));const id=e.getAttribute('data-cd');
-  return kids.length&&e.tagName!=='svg'?`<details data-t="${id}"><summary data-t="${id}">${lab(e)}</summary>${kids.map(walk).join('')}</details>`:`<div class="lf" data-t="${id}">${lab(e)}</div>`};
+  return kids.length&&e.tagName!=='svg'?`<details data-t="${id}"><summary data-t="${id}" draggable="true">${lab(e)}</summary>${kids.map(walk).join('')}</details>`:`<div class="lf" data-t="${id}" draggable="true">${lab(e)}</div>`};
  $('#tree').innerHTML=[...model.body.children].filter(c=>c.hasAttribute('data-cd')&&!skip.test(c.tagName)).map(walk).join('');
+ const tr=$('#tree'),clr=()=>tr.querySelectorAll('.dt,.db').forEach(x=>x.classList.remove('dt','db'));
+ tr.ondragstart=e=>{const t=e.target.closest('[data-t]');if(t)e.dataTransfer.setData('text/plain',t.dataset.t)};
+ tr.ondragover=e=>{const t=e.target.closest('[data-t]');if(!t)return;e.preventDefault();clr();const r=t.getBoundingClientRect();t.classList.add(e.clientY<r.top+r.height/2?'dt':'db')};
+ tr.ondragleave=clr;tr.ondrop=e=>{e.preventDefault();clr();const t=e.target.closest('[data-t]'),id=e.dataTransfer.getData('text/plain');if(!t||!id||t.dataset.t===id)return;
+  const a=byId(id),b=byId(t.dataset.t);if(!a||!b||a.contains(b))return;snapshot();const r=t.getBoundingClientRect();e.clientY<r.top+r.height/2?b.before(a):b.after(a);commitModel();rerenderSel(id);toast('Elemento spostato')};
  $('#tree').onclick=e=>{const t=e.target.closest('[data-t]');if(!t)return;if(t.tagName==='SUMMARY'&&e.offsetX<14)return;e.preventDefault();selectById(t.dataset.t)};markTree()}
 function markTree(){$$('#tree .sel').forEach(x=>x.classList.remove('sel'));if(!msel)return;const id=msel.getAttribute('data-cd');
  const n=$(`#tree summary[data-t="${id}"],#tree .lf[data-t="${id}"]`);if(!n)return;n.classList.add('sel');let p=n.parentElement;while(p&&p.id!=='tree'){if(p.tagName==='DETAILS')p.open=true;p=p.parentElement}n.scrollIntoView({block:'nearest'})}
@@ -377,8 +399,47 @@ function buildTabs(){const t=TABS[user.role];$('#tabs').innerHTML=t.map(([k,l],i
 const tab=()=>$('#tabs button.on')?.dataset.k;
 function renderPanels(){if(!model)return;({design:pDesign,vars:pVars,block:pBlock,seo:pSeo,code:pCode,text:pText,ana:pAna,iss:pIss})[tab()]?.()}
 const noSel='<div class="empty">Clicca un elemento nell’anteprima<br>oppure nei Livelli a sinistra.<br><br>Doppio clic su un testo per riscriverlo.</div>';
-const selHead=()=>`<div class="selhd">${esc(descr(sel))}</div><div class="btns" style="margin-bottom:8px"><button data-a="up" title="Sposta su">↑</button><button data-a="down" title="Sposta giù">↓</button><button data-a="dup" title="Duplica (Ctrl/Cmd+D)">⧉ Duplica</button><button data-a="del" class="dan" title="Elimina (Canc)">🗑</button><button data-a="iss" title="Crea una segnalazione su questo elemento">⚑ Segnala</button></div>`;
-function wireHead(root){root.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>b.dataset.a==='iss'?newIssue(true):act(b.dataset.a))}
+const selHead=()=>`<div class="selhd">${esc(descr(sel))}</div><div class="btns" style="margin-bottom:8px"><button data-a="up" title="Sposta su">↑</button><button data-a="down" title="Sposta giù">↓</button><button data-a="dup" title="Duplica (Ctrl/Cmd+D)">⧉ Duplica</button><button data-a="del" class="dan" title="Elimina (Canc)">🗑</button><button data-a="iss" title="Crea una segnalazione su questo elemento">⚑ Segnala</button></div>
+<div class="btns" style="margin-bottom:8px"><button data-a="hide" title="Spegni/accendi senza cancellare">${msel&&msel.hasAttribute('data-cd-off')?'👁 Mostra':'🚫 Nascondi'}</button><button data-a="imgin" title="Svuota il blocco e mette dentro un'immagine (png, jpg, svg, webp)">🖼 Immagine dentro</button><button data-a="imgrep" title="Sostituisce tutto l'elemento con un'immagine">🖼 Sostituisci</button>${msel&&msel.children.length>1&&[...msel.children].every(c=>c.tagName===msel.children[0].tagName)?'<button data-a="logos" title="Scegli più file: vengono abbinati ai blocchi per nome (es. kyocera.svg → Kyocera)">🖼 Loghi in serie</button>':''}<button data-a="sync" title="Copia questo elemento uguale su tutte le pagine (logo, menu, footer)">⇉ Su tutte le pagine</button>
+<select data-ins style="width:auto"><option value="">＋ Inserisci dopo…</option><option value="titolo">Titolo</option><option value="testo">Testo</option><option value="bottone">Bottone</option><option value="immagine">Immagine</option><option value="spazio">Spazio vuoto</option><option value="sezione">Sezione nuova</option></select></div>`;
+function wireHead(root){const X={iss:()=>newIssue(true),hide:toggleHide,imgin:()=>imgAction('in'),imgrep:()=>imgAction('rep'),logos:batchLogos,sync:syncAll};
+ root.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>(X[b.dataset.a]||(()=>act(b.dataset.a)))());const ins=root.querySelector('[data-ins]');if(ins)ins.onchange=()=>{if(ins.value)insert(ins.value);ins.value=''}}
+/* ---------- immagini, nascondi, inserisci, su tutte le pagine ---------- */
+const IMG_RX=/\.(png|jpe?g|svg|webp|gif|avif)$/i,IMGRULE={'max-width':'100%','max-height':'100%','height':'auto','display':'block','margin':'0 auto','object-fit':'contain'};
+function ensureRule(k,o){const c=cssRules[k];if(c&&Object.keys(o).every(x=>c[x]===o[x]))return;cssRules[k]=Object.assign(c||{},o);writeCssRules()}
+function readImg(f){return new Promise(res=>{const r=new FileReader();r.onload=()=>{const done=(url,mime)=>{const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/svg+xml':'svg','image/gif':'gif'}[mime]||'png';
+  res({name:'img/'+f.name.toLowerCase().replace(/\.[^.]+$/,'').replace(/[^a-z0-9\-]+/g,'-')+'.'+ext,b64:url.split(',')[1],mime})};
+ if(/svg|gif/.test(f.type))return done(r.result,f.type);const im=new Image();im.onload=()=>{const M=2400;if(im.width<=M)return done(r.result,f.type);
+  const c=document.createElement('canvas');c.width=M;c.height=Math.round(im.height*M/im.width);c.getContext('2d').drawImage(im,0,0,c.width,c.height);const mt=f.type==='image/png'?'image/png':'image/jpeg';done(c.toDataURL(mt,.88),mt)};im.src=r.result};r.readAsDataURL(f)})}
+function pickFiles(multi){return new Promise(res=>{const i=document.createElement('input');i.type='file';i.accept='image/png,image/jpeg,image/svg+xml,image/webp,image/gif';i.multiple=!!multi;i.onchange=()=>res([...i.files]);i.click()})}
+async function addImgFile(f){if(source!=='github'){toast('Per caricare immagini serve il token GitHub (⚙)');return null}const d=await readImg(f);files[d.name]={bin:true,b64:d.b64,mime:d.mime,sha:null,orig:null};markDirty(d.name);return d}
+function imgEl(src,alt){const i=model.createElement('img');i.setAttribute('src',src);i.setAttribute('alt',alt||'');i.setAttribute('class','cd-img');i.setAttribute('loading','lazy');i.setAttribute('data-cd',++uid);return i}
+async function imgAction(kind,file){if(!msel)return;const f=file||(await pickFiles())[0];if(!f)return;const d=await addImgFile(f);if(!d)return;snapshot();
+ const alt=(msel.textContent||msel.getAttribute('aria-label')||msel.getAttribute('alt')||'').trim().slice(0,80),i=imgEl(d.name,alt);
+ if(kind==='in'){msel.innerHTML='';msel.appendChild(i)}else{if(msel.getAttribute('class'))i.setAttribute('class','cd-img '+msel.getAttribute('class'));msel.replaceWith(i)}
+ ensureRule('.cd-img',IMGRULE);commitModel();rerenderSel(kind==='in'?msel.getAttribute('data-cd'):i.getAttribute('data-cd'));toast('Immagine inserita: '+d.name+' (online dopo ↻)')}
+async function batchLogos(list){if(!msel)return;const fs=list||await pickFiles(true);if(!fs.length)return;const norm=s=>s.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,''),kids=[...msel.children];let n=0,miss=[];snapshot();
+ for(const f of fs){const k=norm(f.name.replace(/\.[^.]+$/,'')),c=kids.find(c=>{const t=norm(c.textContent);return t&&(k.includes(t)||t.includes(k))});if(!c){miss.push(f.name);continue}
+  const alt=c.textContent.trim(),d=await addImgFile(f);if(!d)break;c.innerHTML='';c.appendChild(imgEl(d.name,alt));n++}
+ ensureRule('.cd-img',IMGRULE);commitModel();rerenderSel(msel.getAttribute('data-cd'));toast(`${n} loghi inseriti`+(miss.length?` · non abbinati: ${miss.join(', ')}`:''),6000)}
+async function smartImg(f){if(!msel)return;if(msel.tagName==='IMG'){const d=await addImgFile(f);if(!d)return;snapshot();msel.setAttribute('src',d.name);msel.removeAttribute('srcset');const id=msel.getAttribute('data-cd');commitModel();rerenderSel(id);toast('Immagine sostituita: '+d.name)}
+ else imgAction(msel.tagName.toLowerCase()==='svg'?'rep':'in',f)}
+function nudge(k,big){const s=big?10:1,[x=0,y=0]=(msel.style.translate||'0px 0px').split(' ').map(v=>parseFloat(v)||0),nx=x+(k==='ArrowLeft'?-s:k==='ArrowRight'?s:0),ny=y+(k==='ArrowUp'?-s:k==='ArrowDown'?s:0);
+ if(!nudge._t)snapshot();clearTimeout(nudge._t);nudge._t=setTimeout(()=>nudge._t=null,800);const v=(nx||ny)?`${nx}px ${ny}px`:'';sel.style.translate=v;msel.style.translate=v;commitModel();drawOv();$('#fSel').textContent=descr(sel)+(v?` · spostato di ${nx}, ${ny} px`:'')}
+function toggleHide(){if(!msel)return;snapshot();msel.hasAttribute('data-cd-off')?msel.removeAttribute('data-cd-off'):msel.setAttribute('data-cd-off','');
+ ensureRule('html:not(.cd-edit) [data-cd-off]',{display:'none!important'});const id=msel.getAttribute('data-cd');commitModel();rerenderSel(id)}
+const INS={titolo:'<h2>Nuovo titolo</h2>',testo:'<p>Nuovo testo: doppio clic per scrivere.</p>',spazio:'<div style="height:40px"></div>',sezione:'<section style="padding:64px 0"><div class="wrap"><h2>Nuova sezione</h2><p>Doppio clic per scrivere il testo.</p></div></section>'};
+async function insert(k){if(!msel){toast('Seleziona prima dove inserire');return}let n;
+ if(k==='immagine'){const [f]=await pickFiles();if(!f)return;const d=await addImgFile(f);if(!d)return;n=imgEl(d.name,'');ensureRule('.cd-img',IMGRULE)}
+ else{const b=model.querySelector('a.btn'),t=model.createElement('template');t.innerHTML=k==='bottone'?`<a class="${b?b.getAttribute('class').replace(/\s*(is-\S+|in)\b/g,''):'btn'}" href="contatti.html">Nuovo bottone</a>`:INS[k];n=t.content.firstElementChild}
+ snapshot();n.setAttribute('data-cd',++uid);n.querySelectorAll('*').forEach(x=>x.setAttribute('data-cd',++uid));
+ (k==='sezione'?(msel.closest('section,header,footer')||msel):msel).after(n);commitModel();rerenderSel(n.getAttribute('data-cd'))}
+function cssPath(el){const p=[];let first=true;while(el&&el.tagName!=='BODY'){const par=el.parentElement,same=[...par.children].filter(c=>c.tagName===el.tagName);p.unshift(first?`:nth-child(${[...par.children].indexOf(el)+1})`:el.tagName.toLowerCase()+(same.length>1?`:nth-of-type(${same.indexOf(el)+1})`:''));first=false;el=par}return 'body > '+p.join(' > ')}
+function syncAll(){if(!msel)return;const path=cssPath(msel),html=clean(msel).outerHTML,pages=pageList().filter(p=>p!==cur&&!isRedirect(files[p].text));
+ if(!confirm(`Copio “${descr(sel)}” uguale su ${pages.length} pagine.\nConsiglio: seleziona il pezzo più piccolo possibile (es. solo il logo, non tutto il menu). Continuare?`))return;let n=0,miss=[];
+ for(const p of pages){const doc=new DOMParser().parseFromString(files[p].text,'text/html'),t=doc.querySelector(path);if(!t){miss.push(p);continue}
+  const tp=doc.createElement('template');tp.innerHTML=html;t.replaceWith(tp.content.firstElementChild);files[p].text='<!DOCTYPE html>\n'+doc.documentElement.outerHTML+'\n';markDirty(p);n++}
+ toast(`Copiato su ${n} pagine`+(miss.length?` · non trovato in: ${miss.join(', ')}`:''),6000)}
 
 /* Design (Web Designer) */
 const UNITLESS=/^(font-weight|line-height|opacity|z-index|flex-grow|order)$/;
@@ -389,23 +450,26 @@ function toHex(v){const m=String(v).match(/\d+(\.\d+)?/g);if(!m||/transparent/.t
 function pDesign(){const P=$('#p-design');if(!sel||!sel.isConnected){P.innerHTML=noSel;return}
  const cs=$('#ifr').contentWindow.getComputedStyle(sel),cls=[...sel.classList].filter(c=>!/^(in|is-open|reveal)$/.test(c)),tag=sel.tagName;
  const scope=P.dataset.scope&&cls.includes(P.dataset.scope.slice(1))?P.dataset.scope:'el';
- P.innerHTML=selHead()+`<div class="grp"><h4>Applica a</h4><select id="scope"><option value="el">Solo questo elemento (questa pagina)</option>${cls.map(c=>`<option value=".${c}" ${scope==='.'+c?'selected':''}>Tutti gli elementi “.${c}” (tutto il sito)</option>`).join('')}</select></div>
+ const dz=tag==='IMG'?'sostituisce questa immagine':tag.toLowerCase()==='svg'?'sostituisce questo disegno (es. foglia, logo)':'va dentro questo blocco (es. box del marchio)';
+ P.innerHTML=selHead()+`<div class="drop" id="dropZ"><b>⬆ Trascina qui un'immagine</b><br>png · jpg · svg · webp — oppure clicca per sceglierla<br><small>${dz}</small></div><div class="grp"><h4>Applica a</h4><select id="scope"><option value="el">Solo questo elemento (questa pagina)</option>${cls.map(c=>`<option value=".${c}" ${scope==='.'+c?'selected':''}>Tutti gli elementi “.${c}” (tutto il sito)</option>`).join('')}</select></div>
  ${canText(sel)?`<div class="grp"><h4>Testo</h4><button id="editTx" style="width:100%">✎ Riscrivi testo (doppio clic)</button></div>`:''}
  <div class="grp"><h4>Tipografia</h4><div class="row">${fld('font-size','Dimensione',cs)}<div><label>Peso</label><select data-p="font-weight">${[400,500,600,700,800].map(w=>`<option ${cs.fontWeight==w?'selected':''}>${w}</option>`).join('')}</select></div></div>
   <div class="row">${fld('line-height','Interlinea',cs)}${fld('letter-spacing','Spaziatura lettere',cs)}</div>
   <div class="row"><div><label>Allineamento</label><select data-p="text-align">${['left','center','right','justify'].map(v=>`<option ${cs.textAlign===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Maiuscole</label><select data-p="text-transform">${['none','uppercase','capitalize','lowercase'].map(v=>`<option ${cs.textTransform===v?'selected':''}>${v}</option>`).join('')}</select></div></div>
   <div class="row row1">${colorFld('color','Colore testo',cs)}</div></div>
  <div class="grp"><h4>Riempimento e bordi</h4><div class="row row1">${colorFld('background-color','Sfondo',cs)}</div>
-  <div class="row">${fld('border-radius','Arrotondamento',cs)}${fld('opacity','Opacità',cs)}</div><div class="row">${fld('border','Bordo',cs)}${fld('box-shadow','Ombra',cs)}</div></div>
+  <div class="row">${fld('border-radius','Arrotondamento',cs)}${fld('opacity','Opacità',cs)}</div>${cs.animationName!=='none'?'<button id="anOff" style="width:100%;margin-bottom:6px">⏸ Ferma animazione</button>':sel.style.animation?'<button id="anOn" style="width:100%;margin-bottom:6px">▶ Riattiva animazione</button>':''}<div class="row">${fld('border','Bordo',cs)}${fld('box-shadow','Ombra',cs)}</div></div>
  <div class="grp"><h4>Dimensioni e spazi</h4><div class="row row3">${fld('width','Larghezza',cs)}${fld('max-width','Larg. max',cs)}${fld('height','Altezza',cs)}</div>
   <label>Padding (interno) — su · destra · giù · sinistra</label><div class="row row4">${['top','right','bottom','left'].map(s=>`<input data-p="padding-${s}" value="${cs.getPropertyValue('padding-'+s)}">`).join('')}</div>
   <label>Margine (esterno) — su · destra · giù · sinistra</label><div class="row row4">${['top','right','bottom','left'].map(s=>`<input data-p="margin-${s}" value="${cs.getPropertyValue('margin-'+s)}">`).join('')}</div>
   <div class="row row3"><div><label>Display</label><select data-p="display">${['block','flex','grid','inline-block','inline','none'].map(v=>`<option ${cs.display===v?'selected':''}>${v}</option>`).join('')}</select></div>${fld('gap','Gap',cs)}<div><label>Direzione</label><select data-p="flex-direction">${['row','column','row-reverse','column-reverse'].map(v=>`<option ${cs.flexDirection===v?'selected':''}>${v}</option>`).join('')}</select></div></div>
   <div class="row"><div><label>Allinea (orizz.)</label><select data-p="justify-content">${['normal','flex-start','center','flex-end','space-between'].map(v=>`<option ${cs.justifyContent===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Allinea (vert.)</label><select data-p="align-items">${['normal','flex-start','center','flex-end','stretch'].map(v=>`<option ${cs.alignItems===v?'selected':''}>${v}</option>`).join('')}</select></div></div></div>
- ${tag==='IMG'?`<div class="grp"><h4>Immagine</h4><img src="${esc(sel.src)}" style="max-width:100%;border-radius:6px;margin-bottom:6px"><input type="file" id="imgUp" accept="image/*"><div class="row row1" style="margin-top:6px"><div><label>Testo alternativo (alt)</label><input data-at="alt" value="${esc(sel.getAttribute('alt'))}"></div></div><div class="row"><div><label>Adattamento</label><select data-p="object-fit">${['fill','cover','contain'].map(v=>`<option ${cs.objectFit===v?'selected':''}>${v}</option>`).join('')}</select></div>${fld('aspect-ratio','Proporzioni',cs)}</div></div>`:''}
+ ${tag==='IMG'?`<div class="grp"><h4>Immagine</h4><img src="${esc(sel.src)}" style="max-width:100%;border-radius:6px;margin-bottom:6px"><input type="file" id="imgUp" accept="image/png,image/jpeg,image/svg+xml,image/webp,image/gif"><label style="margin-top:6px">Oppure dalla libreria del sito</label><select id="imgLib"><option value="">—</option>${Object.keys(files).filter(p=>IMG_RX.test(p)).map(p=>`<option ${sel.getAttribute('src')===p?'selected':''}>${p}</option>`).join('')}</select><div class="row row1" style="margin-top:6px"><div><label>Testo alternativo (alt)</label><input data-at="alt" value="${esc(sel.getAttribute('alt'))}"></div></div><div class="row"><div><label>Adattamento</label><select data-p="object-fit">${['fill','cover','contain'].map(v=>`<option ${cs.objectFit===v?'selected':''}>${v}</option>`).join('')}</select></div>${fld('aspect-ratio','Proporzioni',cs)}</div></div>`:''}
  ${tag==='A'?`<div class="grp"><h4>Link</h4><label>Destinazione</label><input data-at="href" value="${esc(sel.getAttribute('href'))}" list="pgl"><datalist id="pgl">${pageList().map(p=>`<option value="${p}">`).join('')}<option value="tel:+390365224350"></datalist></div>`:''}
  <div class="grp"><button id="resetSt" style="width:100%">Ripristina stile ${scope==='el'?'di questo elemento':scope}</button></div>`;
  wireHead(P);
+ const z=$('#dropZ');z.onclick=async()=>{const [f]=await pickFiles();if(f)smartImg(f)};z.ondragover=e=>{e.preventDefault();z.classList.add('over')};z.ondragleave=()=>z.classList.remove('over');
+ z.ondrop=e=>{e.preventDefault();z.classList.remove('over');const fs=[...e.dataTransfer.files];if(fs.length>1)batchLogos(fs);else if(fs[0])smartImg(fs[0])};
  $('#scope').onchange=e=>{P.dataset.scope=e.target.value==='el'?'':e.target.value;pDesign()};
  if($('#editTx'))$('#editTx').onclick=()=>startText(sel);
  P.querySelectorAll('[data-p]').forEach(i=>{i.onchange=()=>applySt(i.dataset.p,i.value);
@@ -415,6 +479,9 @@ function pDesign(){const P=$('#p-design');if(!sel||!sel.isConnected){P.innerHTML
  P.querySelectorAll('[data-sw]').forEach(b=>b.onclick=()=>applySt(b.dataset.sw,b.dataset.v));
  P.querySelectorAll('[data-at]').forEach(i=>i.onchange=()=>{snapshot();sel.setAttribute(i.dataset.at,i.value);msel.setAttribute(i.dataset.at,i.value);commitModel()});
  if($('#imgUp'))$('#imgUp').onchange=e=>uploadImg(e.target.files[0]);
+ if($('#imgLib'))$('#imgLib').onchange=e=>{if(!e.target.value)return;snapshot();msel.setAttribute('src',e.target.value);const id=msel.getAttribute('data-cd');commitModel();rerenderSel(id)};
+ if($('#anOff'))$('#anOff').onclick=()=>applySt('animation','none');
+ if($('#anOn'))$('#anOn').onclick=()=>{snapshot();sel.style.removeProperty('animation');msel.style.removeProperty('animation');commitModel();pDesign()};
  $('#resetSt').onclick=()=>{snapshot();if(scope==='el'){sel.removeAttribute('style');msel.removeAttribute('style');commitModel()}else{delete cssRules[scope];writeCssRules()}pDesign();drawOv()};
 }
 function applySt(p,v,live){v=String(v).trim();if(/^-?\d+(\.\d+)?$/.test(v)&&!UNITLESS.test(p))v+='px';
@@ -547,8 +614,11 @@ $('#pubBtn').onclick=openPub;$('#pubClose').onclick=()=>$('#mPub').classList.rem
 $('#pubDiscard').onclick=()=>{if(!confirm('Scartare TUTTE le modifiche non pubblicate?'))return;for(const p of dirtyList()){if(files[p].orig==null)delete files[p];else{files[p].text=files[p].orig;files[p].dirty=false;delete files[p].b64}}
  ls.del('cd_draft_'+user.id);updDirty();parseCssRules();openPage(files[cur]?cur:'index.html');$('#mPub').classList.remove('on')};
 $('#pubGo').onclick=async()=>{const b=$('#pubGo');b.disabled=true;$('#pubSt').textContent='Pubblicazione in corso…';
- try{await publish(dirtyList(),($('#pubMsg').value.trim()||'Modifiche dal Commander Dev')+` (${user.id})`);$('#pubMsg').value='';$('#mPub').classList.remove('on');watchBuild()}
+ try{bustCache();await publish(dirtyList(),($('#pubMsg').value.trim()||'Modifiche dal Commander Dev')+` (${user.id})`);$('#pubMsg').value='';$('#mPub').classList.remove('on');watchBuild()}
  catch(e){$('#pubSt').textContent='Errore: '+e.message}b.disabled=false};
+function bustCache(){const v=Date.now().toString(36),need=[CSSF,JSF].filter(f=>files[f]&&files[f].dirty);if(!need.length)return;
+ for(const p of pageList()){const t=files[p].text;let n=t;for(const f of need)n=n.replace(new RegExp('(href|src)="'+f.replace('.','\\.')+'(\\?v=[^"]*)?"','g'),`$1="${f}?v=${v}"`);if(n!==t){files[p].text=n;markDirty(p)}}
+ if(model)for(const f of need){const el=model.querySelector(`link[href^="${f}"],script[src^="${f}"]`);if(el)el.setAttribute(el.tagName==='LINK'?'href':'src',`${f}?v=${v}`)}}
 async function publish(paths,msg,quiet){
  const ref=await gh(`git/ref/heads/${cfg.branch}`),head=ref.object.sha,commit=await gh(`git/commits/${head}`);
  const tree=await gh(`git/trees/${head}?recursive=1`),remote={};tree.tree.forEach(t=>remote[t.path]=t.sha);
@@ -560,7 +630,7 @@ async function publish(paths,msg,quiet){
  const t2=await gh(`git/trees/${nc.sha}?recursive=1`);t2.tree.forEach(t=>{if(paths.includes(t.path)){const f=files[t.path];f.sha=t.sha;f.orig=f.text;f.dirty=false;delete f.b64}});
  saveDraft();updDirty();if(!quiet)toast('Pubblicato ✓ — il sito si aggiorna in circa 1 minuto',4000)}
 async function watchBuild(){$('#fSync').textContent='Sito in aggiornamento…';for(let i=0;i<30;i++){await new Promise(r=>setTimeout(r,8000));
- try{const b=await gh('pages/builds/latest');if(b.status==='built'&&b.commit===headSha){$('#fSync').textContent='Sito online aggiornato ✓ '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});toast('Il sito online è aggiornato ✓');return}
+ try{const b=await gh('pages/builds/latest');if(b.status==='built'&&b.commit===headSha){$('#fSync').textContent='Sito online aggiornato ✓ '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});toast('Il sito online è aggiornato ✓ — premi “↗ Sito” per vederlo',6000);return}
   if(b.status==='errored'){$('#fSync').textContent='Errore di pubblicazione su GitHub Pages';return}}catch(e){$('#fSync').textContent='Online tra circa 1 minuto';return}}}
 
 /* ---------- lavoro in coppia: avviso quando l'altro pubblica ---------- */
@@ -571,7 +641,7 @@ $('#bannerGo').onclick=()=>{$('#banner').style.display='none';saveDraft();loadAl
 
 /* ---------- impostazioni ---------- */
 function openSet(){$('#sTok').value=cfg.token;$('#sOwn').value=cfg.owner;$('#sRepo').value=cfg.repo;$('#sBr').value=cfg.branch;$('#sSite').value=cfg.site;$('#sMsg').textContent='';$('#mSet').classList.add('on')}
-$('#setBtn').onclick=openSet;$('#sClose').onclick=()=>$('#mSet').classList.remove('on');
+$('#setBtn').onclick=openSet;$('#liveBtn').onclick=()=>open(cfg.site+(cur==='index.html'?'':cur)+'?v='+Date.now(),'_blank');$('#sClose').onclick=()=>$('#mSet').classList.remove('on');
 const readSet=()=>({token:$('#sTok').value.trim(),owner:$('#sOwn').value.trim(),repo:$('#sRepo').value.trim(),branch:$('#sBr').value.trim()||'main',site:$('#sSite').value.trim().replace(/\/?$/,'/')});
 $('#sTest').onclick=async()=>{const old=cfg;cfg=Object.assign({},cfg,readSet());try{const r=await gh('');$('#sMsg').innerHTML=r.permissions&&r.permissions.push?'<span style="color:#cfe8ae">✓ Connesso, puoi leggere e pubblicare.</span>':'<span style="color:#F5A523">Connesso ma senza permesso di scrittura.</span>'}catch(e){$('#sMsg').innerHTML='<span style="color:#ff8a8d">Non riesco a collegarmi: '+esc(e.message.slice(0,90))+'</span>'}cfg=old};
 $('#sSave').onclick=()=>{saveDraft();cfg=Object.assign({},cfg,readSet());ls.set('cd_cfg',cfg);$('#mSet').classList.remove('on');loadAll(cur)};
