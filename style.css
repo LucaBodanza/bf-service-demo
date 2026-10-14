@@ -378,3 +378,7 @@ a.brand:hover,.brand:hover{border-color:var(--color-border-brand);color:var(--co
 .nav > a.btn--guasto{background:var(--accent-amber);color:var(--gray-950);border:0}
 .nav > a.btn--guasto:hover{background:#E8951A;color:var(--gray-950)}
 .aside-card > a:not(.btn){color:var(--color-text-brand);font-weight:600}
+
+/* >>> COMMANDER DEV — regole aggiunte dall'editor (non modificare a mano) */
+html:not(.cd-edit) [data-cd-off]{display:none!important}
+/* <<< COMMANDER DEV */
