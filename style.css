@@ -381,4 +381,5 @@ a.brand:hover,.brand:hover{border-color:var(--color-border-brand);color:var(--co
 
 /* >>> COMMANDER DEV — regole aggiunte dall'editor (non modificare a mano) */
 html:not(.cd-edit) [data-cd-off]{display:none!important}
+.cd-img{max-width:100%;max-height:100%;height:auto;display:block;margin:0 auto;object-fit:contain}
 /* <<< COMMANDER DEV */
